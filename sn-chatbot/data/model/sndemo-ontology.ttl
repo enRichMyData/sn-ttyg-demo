@@ -1,0 +1,57 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://sndemo.ontotext.com/ontology/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+: a owl:Ontology ;
+    rdfs:label "Demo procuerement publication ontology." ;
+.
+
+:Tender a owl:Class ;
+    rdfs:label "Tender" ;
+    rdfs:comment "a tender is a formal invitation issued by a public authority for suppliers to submit competitive bids to provide goods, services, or works under specified terms and conditions." ;
+    rdfs:isDefinedBy : ;
+.
+
+:Buyer a owl:Class ;
+        rdfs:label "Buyer" ;
+        rdfs:comment "In public procurement, a buyer or public authority is a government body or publicly funded organization responsible for initiating and managing the procurement process to acquire goods, services, or works in compliance with legal and regulatory frameworks." ;
+        rdfs:isDefinedBy : ;
+.
+
+:amount a owl:DatatypeProperty ;
+        rdfs:domain :Tender ;
+        rdfs:label  "Amount" ;
+        rdfs:comment "Relation indicating the amount of the tender" ;
+.
+:buyer  a owl:ObjectProperty ;
+        rdfs:domain :Buyer ;
+        rdfs:label  "Buyer" ;
+        rdfs:comment "Relation from a tender to the authority issuing the tender" ;
+.
+:cpv   a owl:ObjectProperty ;
+       rdfs:label  "CPV code" ;
+       rdfs:comment "The CPV codes related to the tender" ;
+       rdfs:domain :Tender ;
+       rdfs:range skos:Concept ;
+.
+:name   a owl:DatatypeProperty ;
+       rdfs:label  "Name" ;
+       rdfs:comment "The Name of the buyer" ;
+       rdfs:domain :Buyer ;
+.
+
+:country a owl:DatatypeProperty ;
+         rdfs:label  "Country" ;
+         rdfs:comment "The country of the buyer" ;
+         rdfs:domain :Buyer ;
+.
+:place   a owl:DatatypeProperty ;
+       rdfs:label  "Place" ;
+       rdfs:comment "The city of the buyer" ;
+       rdfs:domain :Buyer ;
+.
+:title   a owl:DatatypeProperty ;
+       rdfs:label  "Title" ;
+       rdfs:comment "The Title of the tender" ;
+       rdfs:domain :Tender ;
+.
