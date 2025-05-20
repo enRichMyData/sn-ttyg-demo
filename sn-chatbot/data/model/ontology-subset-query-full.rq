@@ -1,0 +1,38 @@
+PREFIX cpv: <http://purl.org/cpv/2008/>
+PREFIX onto: <http://www.ontotext.com/>
+PREFIX : <http://sndemo.ontotext.com/ontology/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+CONSTRUCT {
+    ?x ?p ?o .
+}
+FROM onto:explicit
+WHERE {
+    {
+        SELECT DISTINCT ?x {
+            {
+                [] ?x []
+            } UNION {
+                [] a ?x
+            }
+        }
+    }
+    UNION {
+        ?x rdfs:isDefinedBy :
+    }
+    UNION {
+        ?x a skos:Concept
+        FILTER EXISTS {
+            ?thing :cpv ?x
+        }
+    }
+    {
+        ?x ?p ?o .
+        filter(?p not in (owl:sameAs,rdfs:label))
+    } UNION {
+        bind(rdfs:label as ?p)
+        ?x ?p ?o
+        filter(lang(?o) in ("","en"))
+    }
+}
