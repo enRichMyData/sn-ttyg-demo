@@ -4,16 +4,16 @@ PREFIX : <http://sndemo.ontotext.com/ontology/>
 PREFIX cpv: <http://purl.org/cpv/2008/>
 CONSTRUCT {
     ?TURI a :Tender ;
-    :title ?tender_title ;
-    :amount ?tender_eur_value ;
-    :buyer ?BURI ;
-    :cpv ?CPV ;
+        :title ?tender_title ;
+        :amount ?tender_eur_value ;
+        :buyer ?BURI ;
+        :cpv ?CPV ;
+        :date ?RELEASE_DATE ;
     .
     ?BURI a :Buyer ;
-    :name ?buyer_name ;
-    :country ?buyer_address_country_name ;
-    :place ?buyer_address_locality ;
-    :date ?RELEASE_DATE ;
+        :name ?buyer_name ;
+        :country ?buyer_address_country_name ;
+        :place ?buyer_address_locality ;
     .
 }
 WHERE {
