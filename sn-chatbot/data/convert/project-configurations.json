@@ -128,6 +128,12 @@
       "description": "Rename column _ - ocid to ocid"
     },
     {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - tender_url",
+      "newColumnName": "tender_url",
+      "description": "Rename column _ - tender_url to tender_url"
+    },
+    {
       "op": "core/text-transform",
       "engineConfig": {
         "facets": [],

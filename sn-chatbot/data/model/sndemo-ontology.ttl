@@ -26,6 +26,7 @@
 .
 :buyer  a owl:ObjectProperty ;
         rdfs:domain :Buyer ;
+        rdfs:range  :Tender ;
         rdfs:label  "Buyer" ;
         rdfs:comment "Relation from a tender to the authority issuing the tender" ;
 .
@@ -61,4 +62,10 @@
          rdfs:label  "Date" ;
          rdfs:comment "The date the tender is published" ;
          rdfs:domain :Tender ;
+.
+
+:tender_url   a owl:DatatypeProperty ;
+        rdfs:label  "Tender URL" ;
+        rdfs:comment "The external url of the tender" ;
+        rdfs:domain :Tender ;
 .

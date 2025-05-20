@@ -9,6 +9,7 @@ CONSTRUCT {
         :buyer ?BURI ;
         :cpv ?CPV ;
         :date ?RELEASE_DATE ;
+        :tender_url ?tender_url ;
     .
     ?BURI a :Buyer ;
         :name ?buyer_name ;
@@ -32,5 +33,6 @@ WHERE {
     BIND( ?c_content AS ?content ) .
     BIND( ?c_tender_end_date AS ?tender_end_date ) .
     BIND( ?c_tender_description AS ?tender_description ) .
+    BIND(uri(?c_tender_url) AS ?tender_url ) .
     BIND( uri(concat(str(cpv:),"code-",?c_cpv_codes)) AS ?CPV) .
 }
