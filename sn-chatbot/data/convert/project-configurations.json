@@ -126,6 +126,32 @@
       "oldColumnName": "_ - ocid",
       "newColumnName": "ocid",
       "description": "Rename column _ - ocid to ocid"
+    },
+    {
+      "op": "core/text-transform",
+      "engineConfig": {
+        "facets": [],
+        "mode": "row-based"
+      },
+      "columnName": "buyer_address_country_name",
+      "expression": "value.toTitlecase()",
+      "onError": "keep-original",
+      "repeat": false,
+      "repeatCount": 10,
+      "description": "Text transform on cells in column buyer_address_country_name using expression value.toTitlecase()"
+    },
+    {
+      "op": "core/text-transform",
+      "engineConfig": {
+        "facets": [],
+        "mode": "row-based"
+      },
+      "columnName": "buyer_address_locality",
+      "expression": "value.toTitlecase()",
+      "onError": "keep-original",
+      "repeat": false,
+      "repeatCount": 10,
+      "description": "Text transform on cells in column buyer_address_locality using expression value.toTitlecase()"
     }
   ]
 }

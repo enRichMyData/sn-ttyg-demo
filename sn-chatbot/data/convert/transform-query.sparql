@@ -1,4 +1,5 @@
 BASE <http://sndemo.ontotext.com/base/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX : <http://sndemo.ontotext.com/ontology/>
 PREFIX cpv: <http://purl.org/cpv/2008/>
 CONSTRUCT {
@@ -12,6 +13,7 @@ CONSTRUCT {
     :name ?buyer_name ;
     :country ?buyer_address_country_name ;
     :place ?buyer_address_locality ;
+    :date ?RELEASE_DATE ;
     .
 }
 WHERE {
@@ -20,10 +22,10 @@ WHERE {
     BIND( strdt(?c_tender_eur_value,xsd:decimal) AS ?tender_eur_value ) .
     BIND( ?c_buyer_name AS ?buyer_name ) .
     BIND( uri(concat("buyer/",SHA1(replace(lcase(?c_buyer_name),"[^a-z0-9]","")))) AS ?BURI ) .
-    BIND( lcase(?c_buyer_address_locality) AS ?buyer_address_locality ) .
+    BIND( ?c_buyer_address_locality AS ?buyer_address_locality ) .
     BIND( ?c_contact AS ?contact ) .
     BIND( ?c_contact_url AS ?contact_url ) .
-    BIND( ?c_release_date AS ?release_date ) .
+    BIND(strdt(strbefore(?c_release_date,"+"),xsd:dateTime) AS ?RELEASE_DATE ) .
     BIND( ?c_tender_title AS ?tender_title ) .
     BIND( ?c_closing_date AS ?closing_date ) .
     BIND( ?c_date_updated AS ?date_updated ) .

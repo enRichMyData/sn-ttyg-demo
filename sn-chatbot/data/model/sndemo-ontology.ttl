@@ -1,6 +1,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix : <http://sndemo.ontotext.com/ontology/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix onto: <http://www.ontotext.com/> .
 
 : a owl:Ontology ;
     rdfs:label "Demo procuerement publication ontology." ;
@@ -41,9 +42,9 @@
 .
 
 :country a owl:DatatypeProperty ;
-         rdfs:label  "Country" ;
-         rdfs:comment "The country of the buyer" ;
-         rdfs:domain :Buyer ;
+       rdfs:label  "Country" ;
+       rdfs:comment "The country of the buyer" ;
+       rdfs:domain :Buyer ;
 .
 :place   a owl:DatatypeProperty ;
        rdfs:label  "Place" ;
@@ -54,4 +55,10 @@
        rdfs:label  "Title" ;
        rdfs:comment "The Title of the tender" ;
        rdfs:domain :Tender ;
+.
+
+:date   a owl:DatatypeProperty ;
+         rdfs:label  "Date" ;
+         rdfs:comment "The date the tender is published" ;
+         rdfs:domain :Tender ;
 .
