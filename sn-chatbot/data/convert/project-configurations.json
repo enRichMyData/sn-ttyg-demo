@@ -1,0 +1,131 @@
+{
+  "importOptions": [
+    {
+      "recordPath": [
+        "_",
+        "_"
+      ],
+      "limit": -1,
+      "trimStrings": true,
+      "guessCellValueTypes": false,
+      "storeEmptyStrings": true,
+      "includeFileSources": false,
+      "includeArchiveFileName": false,
+      "disableAutoPreview": false,
+      "archiveFileName": null
+    }
+  ],
+  "operations": [
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - tender_eur_value",
+      "newColumnName": "tender_eur_value",
+      "description": "Rename column _ - tender_eur_value to tender_eur_value"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - release_tags",
+      "newColumnName": "release_tags",
+      "description": "Rename column _ - release_tags to release_tags"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - contact_url",
+      "newColumnName": "contact_url",
+      "description": "Rename column _ - contact_url to contact_url"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - buyer_address_country_name",
+      "newColumnName": "buyer_address_country_name",
+      "description": "Rename column _ - buyer_address_country_name to buyer_address_country_name"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - buyer_name",
+      "newColumnName": "buyer_name",
+      "description": "Rename column _ - buyer_name to buyer_name"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - buyer_address_locality",
+      "newColumnName": "buyer_address_locality",
+      "description": "Rename column _ - buyer_address_locality to buyer_address_locality"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - contact",
+      "newColumnName": "contact",
+      "description": "Rename column _ - contact to contact"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - release_date",
+      "newColumnName": "release_date",
+      "description": "Rename column _ - release_date to release_date"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - tender_title",
+      "newColumnName": "tender_title",
+      "description": "Rename column _ - tender_title to tender_title"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - closing_date",
+      "newColumnName": "closing_date",
+      "description": "Rename column _ - closing_date to closing_date"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - date_updated",
+      "newColumnName": "date_updated",
+      "description": "Rename column _ - date_updated to date_updated"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - content",
+      "newColumnName": "content",
+      "description": "Rename column _ - content to content"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - tender_end_date",
+      "newColumnName": "tender_end_date",
+      "description": "Rename column _ - tender_end_date to tender_end_date"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - tender_description",
+      "newColumnName": "tender_description",
+      "description": "Rename column _ - tender_description to tender_description"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - cpv_codes - cpv_codes",
+      "newColumnName": "cpv_codes",
+      "description": "Rename column _ - cpv_codes - cpv_codes to cpv_codes"
+    },
+    {
+      "op": "core/column-move",
+      "columnName": "_ - ocid",
+      "index": 0,
+      "description": "Move column _ - ocid to position 0"
+    },
+    {
+      "op": "core/fill-down",
+      "engineConfig": {
+        "facets": [],
+        "mode": "row-based"
+      },
+      "columnName": "_ - ocid",
+      "description": "Fill down cells in column _ - ocid"
+    },
+    {
+      "op": "core/column-rename",
+      "oldColumnName": "_ - ocid",
+      "newColumnName": "ocid",
+      "description": "Rename column _ - ocid to ocid"
+    }
+  ]
+}
