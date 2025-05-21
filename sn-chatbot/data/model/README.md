@@ -41,9 +41,3 @@ where {
 ```
 
 # Misc
-
-graphdb.openai.api-key
-
-```
-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
-```
