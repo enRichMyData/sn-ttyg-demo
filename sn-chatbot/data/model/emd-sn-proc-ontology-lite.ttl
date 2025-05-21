@@ -1,0 +1,133 @@
+@prefix cpv: <http://purl.org/cpv/2008/> .
+@prefix onto: <http://www.ontotext.com/> .
+@prefix : <http://sndemo.ontotext.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+
+:amount a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:comment "Relation indicating the amount of the tender";
+  rdfs:label "Amount" .
+
+:buyer a owl:ObjectProperty;
+  rdfs:domain :Buyer;
+  rdfs:range :Tender;
+  rdfs:comment "Relation from a tender to the authority issuing the tender";
+  rdfs:label "Buyer" .
+
+:cpv a owl:ObjectProperty;
+  rdfs:domain :Tender;
+  rdfs:range skos:Concept;
+  rdfs:comment "The CPV codes related to the tender";
+  rdfs:label "CPV code" .
+
+:name a owl:DatatypeProperty;
+  rdfs:domain :Buyer;
+  rdfs:comment "The Name of the buyer";
+  rdfs:label "Name" .
+
+:country a owl:DatatypeProperty;
+  rdfs:domain :Buyer;
+  rdfs:comment "The country of the buyer";
+  rdfs:label "Country" .
+
+:place a owl:DatatypeProperty;
+  rdfs:domain :Buyer;
+  rdfs:comment "The city of the buyer";
+  rdfs:label "Place" .
+
+:title a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:comment "The Title of the tender";
+  rdfs:label "Title" .
+
+skos:inScheme a owl:ObjectProperty;
+  rdfs:range skos:ConceptScheme;
+  rdfs:label "is in scheme";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "Relates a resource (for example a concept) to a concept scheme in which it is included.";
+  skos:scopeNote "A concept may be a member of more than one concept scheme." .
+
+skos:narrower a owl:ObjectProperty;
+  rdfs:subPropertyOf skos:narrowerTransitive;
+  rdfs:comment "Narrower concepts are typically rendered as children in a concept hierarchy (tree).";
+  rdfs:label "has narrower";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "Relates a concept to a concept that is more specific in meaning.";
+  skos:scopeNote "By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources." .
+
+skos:broader a owl:ObjectProperty;
+  rdfs:subPropertyOf skos:broaderTransitive;
+  owl:inverseOf skos:narrower;
+  rdfs:comment "Broader concepts are typically rendered as parents in a concept hierarchy (tree).";
+  rdfs:label "has broader";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "Relates a concept to a concept that is more general in meaning.";
+  skos:scopeNote "By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources." .
+
+<http://purl.org/dc/terms/contributor> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/creator> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/description> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/modified> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/title> a owl:AnnotationProperty .
+
+skos:definition a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  rdfs:label "definition";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "A statement or formal explanation of the meaning of a concept." .
+
+skos:example a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  rdfs:label "example";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "An example of the use of a concept." .
+
+skos:scopeNote a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  rdfs:label "scope note";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "A note that helps to clarify the meaning and/or the use of a concept." .
+
+:date a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:comment "The date the tender is published";
+  rdfs:label "Date" .
+
+:tender_url a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:comment "The external url of the tender";
+  rdfs:label "Tender URL" .
+
+:Tender a owl:Class;
+  rdfs:comment "a tender is a formal invitation issued by a public authority for suppliers to submit competitive bids to provide goods, services, or works under specified terms and conditions.";
+  rdfs:label "Tender";
+  rdfs:isDefinedBy <http://sndemo.ontotext.com/ontology/> .
+
+:Buyer a owl:Class;
+  rdfs:comment "In public procurement, a buyer or public authority is a government body or publicly funded organization responsible for initiating and managing the procurement process to acquire goods, services, or works in compliance with legal and regulatory frameworks.";
+  rdfs:label "Buyer";
+  rdfs:isDefinedBy <http://sndemo.ontotext.com/ontology/> .
+
+skos:Concept a owl:Class;
+  rdfs:label "Concept";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "An idea or notion; a unit of thought.";
+  owl:disjointWith skos:ConceptScheme .
+
+skos:ConceptScheme a owl:Class;
+  rdfs:label "Concept Scheme";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts.";
+  skos:example "Thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', and other types of controlled vocabulary are all examples of concept schemes. Concept schemes are also embedded in glossaries and terminologies.";
+  skos:scopeNote "A concept scheme may be defined to include concepts from different sources." .

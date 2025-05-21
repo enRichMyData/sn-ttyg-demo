@@ -24,7 +24,7 @@ WHERE {
     UNION {
         SELECT ?x (count(*) as ?c) {
             ?thing :cpv ?x
-        } group by ?x having(?c>3)
+        } group by ?x having(?c>10)
     }
     {
         ?x ?p ?o .

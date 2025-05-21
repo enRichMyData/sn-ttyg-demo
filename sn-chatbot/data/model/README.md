@@ -20,3 +20,30 @@ select * where {
     ?s a :Buyer ; :place ?place ; :country ?country .
 } 
 ```
+
+post processing 
+```sparql
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+delete where {
+    ?s ?p ""^^xsd:dateTime .
+}
+```
+
+```sparql
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+delete {
+    ?x rdfs:label ?o
+}
+where {
+    ?x rdfs:label ?o
+    filter(lang(?o) not in ("","en"))
+}
+```
+
+# Misc
+
+graphdb.openai.api-key
+
+```
+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
+```
