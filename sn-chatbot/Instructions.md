@@ -40,7 +40,7 @@ Import > Get RDF data from URL
 
 Paste this link 
 ```
-https://github.com/enRichMyData/sn-ttyg-demo/raw/refs/heads/master/sn-chatbot/data/out/snproc.data.ttl.zip
+https://github.com/enRichMyData/sn-ttyg-demo/raw/refs/heads/master/sn-chatbot/data/out/snproc.data1.ttl.zip
 ``` 
 
 # Talk To Your Graph

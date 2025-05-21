@@ -1,3 +1,3 @@
 # GraphDB Talk Your Graph demo 
 
-see [Instructions.md] for instructions how to run demo locally
+see [Instructions.md](sn-chatbot/Instructions.md) for instructions how to run demo locally
