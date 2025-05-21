@@ -24,8 +24,8 @@ sk-svcacct-2WEP6NktaZvnqHyHocWVUBQzI63v6b03J62Tl5rOpDqHf-2pJNL27t4iXZXkpG0_5TOAH
 
 See [doc](https://graphdb.ontotext.com/documentation/11.0/directories-and-config-properties.html#configuration) for other means of setting configuration variables.  
 
-This API key has a very low global limit. 
-Please dont abuse it for purposes other than this demo, it's not worth it!
+*This API key has a very low global limit. 
+Please don't abuse it for purposes other than this demo, it's not worth it!*
 
 
 # Create a repository 
