@@ -7,9 +7,11 @@ TTYG [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-gra
 * Launch GraphDB
 
 # Add OpenAI creds
-From the system dialog of the desktop application 
 
-Settings > Set > Save And Restart
+You neeed to add a custom java property with the OpenAI credentials. 
+Easiest is to do it from the system dialog of the desktop application. 
+
+From the main menu on the left: `Settings` > `Set` > `Save And Restart`
 
 ![](img/config-api-key.png)
 
@@ -27,16 +29,18 @@ See [doc](https://graphdb.ontotext.com/documentation/11.0/directories-and-config
 
 # Create a repository 
 
-Setup > Repository > New GraphDB repository 
+From the main menu on the left: 
+`Setup` > `Repository` > `New GraphDB repository` 
+
 - name `snproc`
-- chose 'No Inference'
+- chose ruleset `No Inference`
 - check box to enable FTS 
 
 ![](img/repo-create.png)
 
 # Load data 
 
-Import > Get RDF data from URL 
+From the main menu on the left: `Import` > `Get RDF data from URL` 
 
 Paste this link 
 ```
@@ -53,7 +57,7 @@ Lab > Talk To Your Graph
 
 
 
-Plus sign on the right --> creata a new agent 
+Click the plus sign on the right --> `creata a new agent` 
 
 * give it a name (i.e `snproc-chatbot`)
 * choose 'snproc' repo
