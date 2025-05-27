@@ -1,15 +1,17 @@
 # TTYG demo Instructions
 
-These are detailed instructuions how to set up the DataWeek 2025 Talk To Your Graph demo locally
+These are detailed instructuions how to set up the DataWeek 2025 Talk To Your Graph demo locally.
 
-TTYG [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-graph.html)
+Detailed [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-graph.html)
+
+# 1. Download Ontotext GraphDB
 
 * Download GraphDB from [download page](https://www.ontotext.com/products/graphdb/#try-graphdb)
 * Fill in form 
 * Install distribution for your OS
 * Launch GraphDB
 
-# Add OpenAI creds
+# 2. Add OpenAI creds
 
 You neeed to add a custom java property with the OpenAI credentials. 
 Easiest is to do it from the system dialog of the desktop application. 
@@ -32,7 +34,7 @@ Your OpenAI Api Key (or ask Nikola)
 See [doc](https://graphdb.ontotext.com/documentation/11.0/directories-and-config-properties.html#configuration) for other means of setting configuration variables.  
 
 
-# Create a repository 
+# 3. Create a repository 
 
 From the main menu on the left: 
 `Setup` > `Repository` > `New GraphDB repository` 
@@ -43,7 +45,7 @@ From the main menu on the left:
 
 ![](img/repo-create.png)
 
-# Load data 
+# 4. Load data 
 
 From the main menu on the left: `Import` > `Get RDF data from URL` 
 
@@ -55,7 +57,7 @@ https://github.com/enRichMyData/sn-ttyg-demo/raw/refs/heads/master/sn-chatbot/da
 Import with default settings,
 Takes about a minute
 
-# Create the agent
+# 5. Create the agent
 
 From the main menu on the left: `Lab` > `Talk To Your Graph`
 
@@ -77,11 +79,11 @@ based on ther ontology and use them to query the data
 note that the ontology is generaed by [ontology-subset-insert.ru](data/model/ontology-subset-insert.ru)
 it can be seen by pressing 'review agent instructions'
 
-# Talk to your graph 
+#  6. Talk to your graph 
 
-*Can get extremly slow due to OpenAI's new restrictions*
+You can now converse with the data using the chatbot interface in natural language.
 
-You can nowe converse with the data using the chatbot interface.
+*Note that this can get extremly slow due to OpenAI's new restrictions*
 
 Use `explain response` button to see the generated query or ask `How did you come up with this answer?` for introspection
 
