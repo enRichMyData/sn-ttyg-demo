@@ -1,4 +1,7 @@
 # TTYG demo Instructions
+
+These are detailed instructuions how to set up the DataWeek 2025 Talk To Your Graph demo locally
+
 TTYG [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-graph.html)
 
 * Download GraphDB from [download page](https://www.ontotext.com/products/graphdb/#try-graphdb)
@@ -54,10 +57,7 @@ Takes about a minute
 
 # Create the agent
 
-
-Lab > Talk To Your Graph
-
-
+From the main menu on the left: `Lab` > `Talk To Your Graph`
 
 Click the plus sign on the right --> `creata a new agent` 
 
