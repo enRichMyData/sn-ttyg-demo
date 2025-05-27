@@ -1,10 +1,10 @@
 # TTYG demo Instructions
 TTYG [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-graph.html)
 
-* GDB Download and install from [download page](https://www.ontotext.com/products/graphdb/#try-graphdb)
+* Download GraphDB from [download page](https://www.ontotext.com/products/graphdb/#try-graphdb)
 * Fill in form 
 * Install distribution for your OS
-* Launch GDB
+* Launch GraphDB
 
 # Add OpenAI creds
 From the system dialog of the desktop application 
@@ -19,20 +19,20 @@ graphdb.openai.api-key
 ```
 * value: 
 ```
-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
+Your OpenAI Api Key (or ask Nikola) 
 ```
 
 See [doc](https://graphdb.ontotext.com/documentation/11.0/directories-and-config-properties.html#configuration) for other means of setting configuration variables.  
-
-*This API key has a very low global limit. 
-Please don't abuse it for purposes other than this demo, it's not worth it!*
 
 
 # Create a repository 
 
 Setup > Repository > New GraphDB repository 
 - name `snproc`
+- chose 'No Inference'
 - check box to enable FTS 
+
+![](img/repo-create.png)
 
 # Load data 
 
@@ -43,25 +43,50 @@ Paste this link
 https://github.com/enRichMyData/sn-ttyg-demo/raw/refs/heads/master/sn-chatbot/data/out/snproc.data.trig.zip
 ``` 
 
-# Talk To Your Graph
+Import with default settings,
+Takes about a minute
+
+# Create the agent
+
 
 Lab > Talk To Your Graph
 
+
+
+Plus sign on the right --> creata a new agent 
+
+* give it a name (i.e `snproc-chatbot`)
+* choose 'snproc' repo
+* choose 'Query method' --> 'SPARQL' --> 'Fetch ontology from named graph' and paste  the URI below
+
+```
+http://sndemo.ontotext.com/ontology/
+```
+
+* check "Full-text search in labels fo IRI dicovery"
+
+Thes chatbot is now configured to generate SPARQL queries,
+based on ther ontology and use them to query the data 
+
+note that the ontology is generaed by [ontology-subset-insert.ru](data/model/ontology-subset-insert.ru)
+it can be seen by pressing 'review agent instructions'
+
+# Talk to your graph 
+
 *Can get extremly slow due to OpenAI's new restrictions*
 
-select `emd-sn-proc-demo`
+You can nowe converse with the data using the chatbot interface.
 
-this chatbot is configured to generate SPARQL queries based on ther ontoogy and iuse them to query the data 
+Use `explain response` button to see the generated query or ask `How did you come up with this answer?` for introspection
 
-Converse with the data using the chatbot interface.
-
-Use `explain response` button to see the generated query  
-
-Example questions: 
+Here are some example questions: 
 
 * What is in your database?`
 * What countries are represented in the data?`
 * How many buyers from France do you have in the data?
 * What is the total amount of the tenders from french buyer for the month of march 2025?
+* I am a producer of glass eprouvettes, help me find intersting tenders in France. 
+  (Followup) Order all the buyers by department and by amount spent 
+
 
 ![](img/ttyg.png)
