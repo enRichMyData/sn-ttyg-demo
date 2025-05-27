@@ -11,7 +11,9 @@ TTYG [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-gra
 You neeed to add a custom java property with the OpenAI credentials. 
 Easiest is to do it from the system dialog of the desktop application. 
 
-From the main menu on the left: `Settings` > `Set` > `Save And Restart`
+* In the dialog click `Settings` 
+* add key value pair
+* click `Set` > `Save And Restart`
 
 ![](img/config-api-key.png)
 
