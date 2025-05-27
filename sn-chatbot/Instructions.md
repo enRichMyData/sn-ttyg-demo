@@ -1,6 +1,6 @@
 # TTYG demo Instructions
 
-These are detailed instructuions how to set up the DataWeek 2025 Talk To Your Graph demo locally.
+These are detailed instructions how to set up the DataWeek 2025 Talk To Your Graph demo locally.
 
 Detailed [documentation](https://graphdb.ontotext.com/documentation/11.0/talk-to-graph.html)
 
