@@ -1,0 +1,3054 @@
+@prefix gn: <https://www.geonames.org/ontology#> .
+@prefix cpv: <http://purl.org/cpv/2008/> .
+@prefix onto: <http://www.ontotext.com/> .
+@prefix : <http://sndemo.ontotext.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf4j: <http://rdf4j.org/schema/rdf4j#> .
+@prefix sesame: <http://www.openrdf.org/schema/sesame#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+
+:location a owl:ObjectProperty;
+  rdfs:domain :Buyer;
+  rdfs:range gn:Feature;
+  rdfs:label "Location";
+  rdfs:comment "Relation from a byer to the geonames entity representing it's geographical locaiton";
+  onto:pragmatics "Locations can point to diffrent entites in the geonames hirarchy. When querying consider that the desired location might be further down the hierarchy than the one from the query." .
+
+skos:altLabel a owl:AnnotationProperty;
+  rdfs:subPropertyOf rdfs:label;
+  skos:definition "An alternative lexical label for a resource.";
+  skos:example "Acronyms, abbreviations, spelling variants, and irregular plural/singular forms may be included among the alternative labels for a concept. Mis-spelled terms are normally included as hidden labels (see skos:hiddenLabel).";
+  rdfs:label "alternative label";
+  rdfs:comment "The range of skos:altLabel is the class of RDF plain literals."@en,
+    "skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise disjoint properties.";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+gn:featureCode a owl:ObjectProperty;
+  rdfs:domain gn:Feature;
+  rdfs:range gn:Code;
+  rdfs:label "feature code"@en;
+  rdfs:comment "Type of the feature, as defined in geonames taxonomy."@en .
+
+gn:countryCode a owl:DatatypeProperty;
+  rdfs:domain gn:Feature;
+  rdfs:label "ISO country code"@en;
+  rdfs:comment "A two letters country code in the ISO 3166 list"@en, "The countryCode value for a Geoname Feature is equal to the countryCode value of the parentCountry value."@en .
+
+gn:name a owl:DatatypeProperty;
+  rdfs:domain gn:Feature;
+  rdfs:label "name"@en;
+  rdfs:comment "The main international name of a feature. The value has no xml:lang tag."@en .
+
+gn:featureClass a owl:ObjectProperty;
+  rdfs:label "feature class"@en;
+  rdfs:comment "The main category of the feature, as defined in geonames taxonomy."@en .
+
+gn:parentFeature a owl:TransitiveProperty, owl:ObjectProperty;
+  rdfs:domain gn:Feature;
+  rdfs:range gn:Feature;
+  rdfs:label "parent feature"@en;
+  rdfs:comment "A feature parent of the current one, in either administrative or physical subdivision."@en .
+
+gn:wikipediaArticle a owl:ObjectProperty;
+  rdfs:domain gn:Feature;
+  rdfs:range gn:WikipediaArticle;
+  rdfs:label "wikipedia article"@en;
+  rdfs:comment "A Wikipedia article of which subject is the resource."@en .
+
+gn:population a owl:DatatypeProperty;
+  rdfs:domain gn:Feature;
+  rdfs:range xsd:integer;
+  rdfs:label "population"@en .
+
+gn:shortName a owl:DatatypeProperty;
+  rdfs:subPropertyOf gn:alternateName;
+  rdfs:domain gn:Feature;
+  rdfs:label "short name"@en .
+
+gn:parentCountry a owl:ObjectProperty;
+  rdfs:subPropertyOf gn:parentFeature;
+  rdfs:domain gn:Feature;
+  rdfs:range _:genid-2315c17811cb445eb484e10d637e61f0362987-node18;
+  rdfs:label "parent country"@en .
+
+gn:parentADM1 a owl:ObjectProperty;
+  rdfs:subPropertyOf gn:parentFeature;
+  rdfs:domain gn:Feature;
+  rdfs:range _:genid-2315c17811cb445eb484e10d637e61f0362987-node14;
+  rdfs:label "level 1 administrative parent"@en .
+
+gn:officialName a owl:DatatypeProperty;
+  rdfs:subPropertyOf skos:prefLabel;
+  rdfs:domain gn:Feature;
+  rdfs:label "official name"@en;
+  rdfs:comment "A name in an official local language"@en .
+
+gn:neighbouringFeatures a owl:ObjectProperty;
+  rdfs:domain gn:Feature;
+  rdfs:range gn:RDFData;
+  rdfs:label "neighbouring features"@en;
+  rdfs:comment "Links to an RDF document containing the descriptions of neighbouring features. Applies when the feature has definite boarders."@en .
+
+gn:parentADM2 a owl:ObjectProperty;
+  rdfs:subPropertyOf gn:parentFeature;
+  rdfs:domain gn:Feature;
+  rdfs:range _:genid-2315c17811cb445eb484e10d637e61f0362987-node15;
+  rdfs:label "level 2 administrative parent"@en .
+
+gn:postalCode a owl:DatatypeProperty;
+  rdfs:domain gn:Feature;
+  rdfs:label "postal code"@en .
+
+gn:parentADM3 a owl:ObjectProperty;
+  rdfs:subPropertyOf gn:parentFeature;
+  rdfs:domain gn:Feature;
+  rdfs:range _:genid-2315c17811cb445eb484e10d637e61f0362987-node16;
+  rdfs:label "level 3 administrative parent"@en .
+
+gn:parentADM4 a owl:ObjectProperty;
+  rdfs:subPropertyOf gn:parentFeature;
+  rdfs:domain gn:Feature;
+  rdfs:range _:genid-2315c17811cb445eb484e10d637e61f0362987-node17;
+  rdfs:label "level 4 administrative parent"@en .
+
+<http://purl.org/dc/terms/title> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/description> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/creator> a owl:AnnotationProperty .
+
+<http://purl.org/dc/terms/contributor> a owl:AnnotationProperty .
+
+<http://xmlns.com/foaf/0.1/name> a owl:DatatypeProperty .
+
+<http://purl.org/dc/terms/modified> a owl:AnnotationProperty .
+
+skos:historyNote a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  skos:definition "A note about the past state/use/meaning of a concept.";
+  rdfs:label "history note";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:prefLabel a owl:AnnotationProperty;
+  rdfs:subPropertyOf rdfs:label;
+  skos:definition "The preferred lexical label for a resource, in a given language.";
+  rdfs:label "preferred label";
+  rdfs:comment "A resource has no more than one value of skos:prefLabel per language tag, and no more than one value of skos:prefLabel without language tag."@en,
+    "The range of skos:prefLabel is the class of RDF plain literals."@en, """skos:prefLabel, skos:altLabel and skos:hiddenLabel are pairwise
+      disjoint properties.""";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:notation a owl:DatatypeProperty;
+  skos:definition "A notation, also known as classification code, is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.";
+  skos:scopeNote "By convention, skos:notation is used with a typed literal in the object position of the triple.";
+  rdfs:label "notation";
+  rdfs:comment "Used to store the values of feature codes"@en;
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:inScheme a owl:ObjectProperty;
+  rdfs:range skos:ConceptScheme;
+  skos:definition "Relates a resource (for example a concept) to a concept scheme in which it is included.";
+  skos:scopeNote "A concept may be a member of more than one concept scheme.";
+  rdfs:label "is in scheme";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+gn:nearbyFeatures a owl:ObjectProperty;
+  rdfs:domain gn:Feature;
+  rdfs:range gn:RDFData;
+  rdfs:label "nearby features"@en;
+  rdfs:comment "Links to an RDF document containing the descriptions of nearby features"@en .
+
+skos:definition a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  skos:definition "A statement or formal explanation of the meaning of a concept.";
+  rdfs:label "definition";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+:amount a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:label "Amount";
+  rdfs:comment "Relation indicating the amount of the tender" .
+
+:buyer a owl:ObjectProperty;
+  rdfs:domain :Tender;
+  rdfs:range :Buyer;
+  rdfs:label "Buyer";
+  rdfs:comment "Relation from a tender to the authority issuing the tender" .
+
+:cpv a owl:ObjectProperty;
+  rdfs:domain :Tender;
+  rdfs:range skos:Concept;
+  rdfs:label "CPV code";
+  rdfs:comment "The CPV codes related to the tender" .
+
+:date a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:label "Date";
+  rdfs:comment "The date the tender is published" .
+
+:name a owl:DatatypeProperty;
+  rdfs:domain :Buyer;
+  rdfs:label "Name";
+  rdfs:comment "The Name of the buyer" .
+
+:country a owl:DatatypeProperty;
+  rdfs:domain :Buyer;
+  rdfs:label "Country";
+  rdfs:comment "The country of the buyer" .
+
+:place a owl:DatatypeProperty;
+  rdfs:domain :Buyer;
+  rdfs:label "Place";
+  rdfs:comment "The city of the buyer" .
+
+:title a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:label "Title";
+  rdfs:comment "The Title of the tender" .
+
+:tender_url a owl:DatatypeProperty;
+  rdfs:domain :Tender;
+  rdfs:label "Tender URL";
+  rdfs:comment "The external url of the tender" .
+
+skos:example a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  skos:definition "An example of the use of a concept.";
+  rdfs:label "example";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:scopeNote a owl:AnnotationProperty;
+  rdfs:subPropertyOf skos:note;
+  skos:definition "A note that helps to clarify the meaning and/or the use of a concept.";
+  rdfs:label "scope note";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+skos:broader a owl:ObjectProperty;
+  rdfs:subPropertyOf skos:broaderTransitive;
+  skos:definition "Relates a concept to a concept that is more general in meaning.";
+  skos:scopeNote "By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources.";
+  rdfs:label "has broader";
+  rdfs:comment "Broader concepts are typically rendered as parents in a concept hierarchy (tree).";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  owl:inverseOf skos:narrower .
+
+skos:narrower a owl:ObjectProperty;
+  rdfs:subPropertyOf skos:narrowerTransitive;
+  skos:definition "Relates a concept to a concept that is more specific in meaning.";
+  skos:scopeNote "By convention, skos:broader is only used to assert an immediate (i.e. direct) hierarchical link between two conceptual resources.";
+  rdfs:label "has narrower";
+  rdfs:comment "Narrower concepts are typically rendered as children in a concept hierarchy (tree).";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+:Buyer a owl:Class;
+  rdfs:label "Buyer";
+  rdfs:comment "In public procurement, a buyer or public authority is a government body or publicly funded organization responsible for initiating and managing the procurement process to acquire goods, services, or works in compliance with legal and regulatory frameworks.";
+  rdfs:isDefinedBy <http://sndemo.ontotext.com/ontology/> .
+
+gn:Feature a owl:Class;
+  rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing>;
+  owl:equivalentClass <http://geovocab.org/spatial#Feature>;
+  rdfs:label "Feature"@en;
+  rdfs:comment "A geographical feature"@en;
+  rdfs:seeAlso <http://schema.org/Place> .
+
+gn:Code a owl:Class;
+  rdfs:subClassOf skos:Concept;
+  rdfs:label "Code"@en;
+  rdfs:comment "A feature code."@en .
+
+gn:Class a owl:Class;
+  rdfs:subClassOf skos:ConceptScheme;
+  rdfs:label "Class"@en;
+  rdfs:comment "A class of features."@en .
+
+:Tender a owl:Class;
+  rdfs:label "Tender";
+  rdfs:comment "a tender is a formal invitation issued by a public authority for suppliers to submit competitive bids to provide goods, services, or works under specified terms and conditions.";
+  rdfs:isDefinedBy <http://sndemo.ontotext.com/ontology/> .
+
+skos:Concept a owl:Class;
+  skos:definition "An idea or notion; a unit of thought.";
+  rdfs:label "Concept";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core>;
+  owl:disjointWith skos:ConceptScheme .
+
+skos:ConceptScheme a owl:Class;
+  skos:definition "A set of concepts, optionally including statements about semantic relationships between those concepts.";
+  skos:example "Thesauri, classification schemes, subject heading lists, taxonomies, 'folksonomies', and other types of controlled vocabulary are all examples of concept schemes. Concept schemes are also embedded in glossaries and terminologies.";
+  skos:scopeNote "A concept scheme may be defined to include concepts from different sources.";
+  rdfs:label "Concept Scheme";
+  rdfs:isDefinedBy <http://www.w3.org/2004/02/skos/core> .
+
+cpv:code-34620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34600000;
+  rdfs:label "Rolling stock"@en .
+
+cpv:code-34630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34600000;
+  rdfs:label "Parts of railway or tramway locomotives or rolling stock; railways traffic-control equipment"@en .
+
+cpv:code-34140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34100000;
+  rdfs:label "Heavy-duty motor vehicles"@en .
+
+cpv:code-34110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34100000;
+  rdfs:label "Passenger cars"@en .
+
+cpv:code-50220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50200000;
+  rdfs:label "Repair, maintenance and associated services related to railways and other equipment"@en .
+
+cpv:code-45000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Construction work"@en .
+
+cpv:code-71240000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71200000;
+  rdfs:label "Architectural, engineering and planning services"@en .
+
+cpv:code-79310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79300000;
+  rdfs:label "Market research services"@en .
+
+cpv:code-71310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71300000;
+  rdfs:label "Consultative engineering and construction services"@en .
+
+cpv:code-71220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71200000;
+  rdfs:label "Architectural design services"@en .
+
+cpv:code-71330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71300000;
+  rdfs:label "Miscellaneous engineering services"@en .
+
+cpv:code-45311000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45310000;
+  rdfs:label "Electrical wiring and fitting work"@en .
+
+cpv:code-45230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45200000;
+  rdfs:label "Construction work for pipelines, communication and power lines, for highways, roads, airfields and railways; flatwork"@en .
+
+cpv:code-45310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45300000;
+  rdfs:label "Electrical installation work"@en .
+
+cpv:code-31210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31200000;
+  rdfs:label "Electrical apparatus for switching or protecting electrical circuits"@en .
+
+cpv:code-71630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71600000;
+  rdfs:label "Technical inspection and testing services"@en .
+
+cpv:code-09310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09300000;
+  rdfs:label "Electricity"@en .
+
+cpv:code-45450000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45400000;
+  rdfs:label "Other building completion work"@en .
+
+cpv:code-45330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45300000;
+  rdfs:label "Plumbing and sanitary works"@en .
+
+cpv:code-45260000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45200000;
+  rdfs:label "Roof works and other special trade construction works"@en .
+
+cpv:code-85210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-85200000;
+  rdfs:label "Domestic animal nurseries"@en .
+
+cpv:code-50324200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-50324000;
+  rdfs:label "Preventive maintenance services"@en .
+
+cpv:code-79620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79600000;
+  rdfs:label "Supply services of personnel including temporary staff"@en .
+
+cpv:code-75130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75100000;
+  rdfs:label "Supporting services for the government"@en .
+
+cpv:code-75310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75300000;
+  rdfs:label "Benefit services"@en .
+
+cpv:code-79610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79600000;
+  rdfs:label "Placement services of personnel"@en .
+
+cpv:code-34990000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34900000;
+  rdfs:label "Control, safety, signalling and light equipment"@en .
+
+cpv:code-34940000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34900000;
+  rdfs:label "Railway equipment"@en .
+
+cpv:code-34920000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34900000;
+  rdfs:label "Road equipment"@en .
+
+cpv:code-35260000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-35200000;
+  rdfs:label "Police signs"@en .
+
+cpv:code-45240000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45200000;
+  rdfs:label "Construction work for water projects"@en .
+
+cpv:code-34510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34500000;
+  rdfs:label "Ships"@en .
+
+cpv:code-42410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42400000;
+  rdfs:label "Lifting and handling equipment"@en .
+
+cpv:code-34930000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34900000;
+  rdfs:label "Marine equipment"@en .
+
+cpv:code-43310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-43300000;
+  rdfs:label "Civil engineering machinery"@en .
+
+cpv:code-45300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-45000000;
+  rdfs:label "Building installation work"@en .
+
+cpv:code-45110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45100000;
+  rdfs:label "Building demolition and wrecking work and earthmoving work"@en .
+
+cpv:code-44210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44200000;
+  rdfs:label "Structures and parts of structures"@en .
+
+cpv:code-45220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45200000;
+  rdfs:label "Engineering works and construction works"@en .
+
+cpv:code-45210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45200000;
+  rdfs:label "Building construction work"@en .
+
+cpv:code-44110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44100000;
+  rdfs:label "Construction materials"@en .
+
+cpv:code-90480000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90400000;
+  rdfs:label "Sewerage management services"@en .
+
+cpv:code-90470000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90400000;
+  rdfs:label "Sewer cleaning services"@en .
+
+cpv:code-45250000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45200000;
+  rdfs:label "Construction works for plants, mining and manufacturing and for buildings relating to the oil and gas industry"@en .
+
+cpv:code-50510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50500000;
+  rdfs:label "Repair and maintenance services of pumps, valves, taps and metal containers"@en .
+
+cpv:code-50721000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-50720000;
+  rdfs:label "Commissioning of heating installations"@en .
+
+cpv:code-79340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79300000;
+  rdfs:label "Advertising and marketing services"@en .
+
+cpv:code-22460000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22400000;
+  rdfs:label "Trade-advertising material, commercial catalogues and manuals"@en .
+
+cpv:code-79820000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79800000;
+  rdfs:label "Services related to printing"@en .
+
+cpv:code-39290000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39200000;
+  rdfs:label "Miscellaneous furnishing"@en .
+
+cpv:code-79410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79400000;
+  rdfs:label "Business and management consultancy services"@en .
+
+cpv:code-90911200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-90911000;
+  rdfs:label "Building-cleaning services"@en .
+
+cpv:code-90910000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90900000;
+  rdfs:label "Cleaning services"@en .
+
+cpv:code-90920000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90900000;
+  rdfs:label "Facility related sanitation services"@en .
+
+cpv:code-90510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90500000;
+  rdfs:label "Refuse disposal and treatment"@en .
+
+cpv:code-90520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90500000;
+  rdfs:label "Radioactive-, toxic-, medical- and hazardous waste services"@en .
+
+cpv:code-98340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Accommodation and office services"@en .
+
+cpv:code-45453100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45453000;
+  rdfs:label "Refurbishment work"@en .
+
+cpv:code-45440000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45400000;
+  rdfs:label "Painting and glazing work"@en .
+
+cpv:code-30192000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-30190000;
+  rdfs:label "Office supplies"@en .
+
+cpv:code-30190000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-30100000;
+  rdfs:label "Various office equipment and supplies"@en .
+
+cpv:code-39160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "School furniture"@en .
+
+cpv:code-30120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-30100000;
+  rdfs:label "Photocopying and offset printing equipment"@en .
+
+cpv:code-30230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-30200000;
+  rdfs:label "Computer-related equipment"@en .
+
+cpv:code-60130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Special-purpose road passenger-transport services"@en .
+
+cpv:code-60112000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Public road transport services"@en .
+
+cpv:code-60140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Non-scheduled passenger transport"@en .
+
+cpv:code-60170000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Hire of passenger transport vehicles with driver"@en .
+
+cpv:code-60120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Taxi services"@en .
+
+cpv:code-45112500 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45112000;
+  rdfs:label "Earthmoving work"@en .
+
+cpv:code-45112710 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45112700;
+  rdfs:label "Landscaping work for green areas"@en .
+
+cpv:code-66512000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-66510000;
+  rdfs:label "Accident and health insurance services"@en .
+
+cpv:code-66510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66500000;
+  rdfs:label "Insurance services"@en .
+
+cpv:code-66520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66500000;
+  rdfs:label "Pension services"@en .
+
+cpv:code-09130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09100000;
+  rdfs:label "Petroleum and distillates"@en .
+
+cpv:code-30160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-30100000;
+  rdfs:label "Magnetic cards"@en .
+
+cpv:code-50110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50100000;
+  rdfs:label "Repair and maintenance services of motor vehicles and associated equipment"@en .
+
+cpv:code-09210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09200000;
+  rdfs:label "Lubricating preparations"@en .
+
+cpv:code-63710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63700000;
+  rdfs:label "Support services for land transport"@en .
+
+cpv:code-79311000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79310000;
+  rdfs:label "Survey services"@en .
+
+cpv:code-79311200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-79311000;
+  rdfs:label "Survey conduction services"@en .
+
+cpv:code-79210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79200000;
+  rdfs:label "Accounting and auditing services"@en .
+
+cpv:code-73210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-73200000;
+  rdfs:label "Research consultancy services"@en .
+
+cpv:code-73110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-73100000;
+  rdfs:label "Research services"@en .
+
+cpv:code-44420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44400000;
+  rdfs:label "Goods used in construction"@en .
+
+cpv:code-31520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31500000;
+  rdfs:label "Lamps and light fittings"@en .
+
+cpv:code-51110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-51100000;
+  rdfs:label "Installation services of electrical equipment"@en .
+
+cpv:code-50230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50200000;
+  rdfs:label "Repair, maintenance and associated services related to roads and other equipment"@en .
+
+cpv:code-71241000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71240000;
+  rdfs:label "Feasibility study, advisory service, analysis"@en .
+
+cpv:code-71350000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71300000;
+  rdfs:label "Engineering-related scientific and technical services"@en .
+
+cpv:code-71000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Architectural, construction, engineering and inspection services"@en .
+
+cpv:code-71210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71200000;
+  rdfs:label "Advisory architectural services"@en .
+
+cpv:code-39310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39300000;
+  rdfs:label "Catering equipment"@en .
+
+cpv:code-39220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39200000;
+  rdfs:label "Kitchen equipment, household and domestic items and catering supplies"@en .
+
+cpv:code-39710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39700000;
+  rdfs:label "Electrical domestic appliances"@en .
+
+cpv:code-42950000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42900000;
+  rdfs:label "Parts of general-purpose machinery"@en .
+
+cpv:code-50720000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50700000;
+  rdfs:label "Repair and maintenance services of central heating"@en .
+
+cpv:code-33190000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Miscellaneous medical devices and products"@en .
+
+cpv:code-33150000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Radiotherapy, mechanotherapy, electrotherapy and physical therapy devices"@en .
+
+cpv:code-30199770 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-30199700;
+  rdfs:label "Luncheon vouchers"@en .
+
+cpv:code-98390000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Other services"@en .
+
+cpv:code-39150000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "Miscellaneous furniture and equipment"@en .
+
+cpv:code-39110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "Seats, chairs and related products, and associated parts"@en .
+
+cpv:code-60160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Mail transport by road"@en .
+
+cpv:code-63120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63100000;
+  rdfs:label "Storage and warehousing services"@en .
+
+cpv:code-71221000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71220000;
+  rdfs:label "Architectural services for buildings"@en .
+
+cpv:code-33000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Medical equipments, pharmaceuticals and personal care products"@en .
+
+cpv:code-33110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Imaging equipment for medical, dental and veterinary use"@en .
+
+cpv:code-33140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Medical consumables"@en .
+
+cpv:code-33120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Recording systems and exploration devices"@en .
+
+cpv:code-33180000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Functional support"@en .
+
+cpv:code-90513000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90510000;
+  rdfs:label "Non-hazardous refuse and waste treatment and disposal services"@en .
+
+cpv:code-44610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44600000;
+  rdfs:label "Tanks, reservoirs, containers and pressure vessels"@en .
+
+cpv:code-90530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90500000;
+  rdfs:label "Operation of a refuse site"@en .
+
+cpv:code-79810000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79800000;
+  rdfs:label "Printing services"@en .
+
+cpv:code-79823000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79820000;
+  rdfs:label "Printing and delivery services"@en .
+
+cpv:code-79970000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79900000;
+  rdfs:label "Publishing services"@en .
+
+cpv:code-22450000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22400000;
+  rdfs:label "Security-type printed matter"@en .
+
+cpv:code-66515000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-66510000;
+  rdfs:label "Damage or loss insurance services"@en .
+
+cpv:code-66516400 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-66516000;
+  rdfs:label "General liability insurance services"@en .
+
+cpv:code-66513100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-66513000;
+  rdfs:label "Legal expenses insurance services"@en .
+
+cpv:code-24310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-24300000;
+  rdfs:label "Basic inorganic chemicals"@en .
+
+cpv:code-33690000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33600000;
+  rdfs:label "Various medicinal products"@en .
+
+cpv:code-24960000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-24900000;
+  rdfs:label "Various chemical products"@en .
+
+cpv:code-24320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-24300000;
+  rdfs:label "Basic organic chemicals"@en .
+
+cpv:code-24950000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-24900000;
+  rdfs:label "Specialised chemical products"@en .
+
+cpv:code-39830000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39800000;
+  rdfs:label "Cleaning products"@en .
+
+cpv:code-39810000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39800000;
+  rdfs:label "Odoriferous preparations and waxes"@en .
+
+cpv:code-33760000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33700000;
+  rdfs:label "Toilet paper, handkerchiefs, hand towels and serviettes"@en .
+
+cpv:code-33710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33700000;
+  rdfs:label "Perfumes, toiletries and condoms"@en .
+
+cpv:code-34130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34100000;
+  rdfs:label "Motor vehicles for the transport of goods"@en .
+
+cpv:code-60180000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60100000;
+  rdfs:label "Hire of goods-transport vehicles with driver"@en .
+
+cpv:code-98350000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Civic-amenity services"@en .
+
+cpv:code-45111100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45111000;
+  rdfs:label "Demolition work"@en .
+
+cpv:code-90500000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-90000000;
+  rdfs:label "Refuse and waste related services"@en .
+
+cpv:code-71800000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Consulting services for water-supply and waste consultancy"@en .
+
+cpv:code-71620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71600000;
+  rdfs:label "Analysis services"@en .
+
+cpv:code-19640000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-19600000;
+  rdfs:label "Polythene waste and refuse sacks and bags"@en .
+
+cpv:code-66515200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-66515000;
+  rdfs:label "Property insurance services"@en .
+
+cpv:code-71315200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71315000;
+  rdfs:label "Building consultancy services"@en .
+
+cpv:code-90710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90700000;
+  rdfs:label "Environmental management"@en .
+
+cpv:code-45233141 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233140;
+  rdfs:label "Road-maintenance works"@en .
+
+cpv:code-90610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90600000;
+  rdfs:label "Street-cleaning and sweeping services"@en .
+
+cpv:code-77310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77300000;
+  rdfs:label "Planting and maintenance services of green areas"@en .
+
+cpv:code-90620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90600000;
+  rdfs:label "Snow-clearing services"@en .
+
+cpv:code-77120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77100000;
+  rdfs:label "Composting services"@en .
+
+cpv:code-77210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77200000;
+  rdfs:label "Logging services"@en .
+
+cpv:code-39130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "Office furniture"@en .
+
+cpv:code-39120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "Tables, cupboards, desk and bookcases"@en .
+
+cpv:code-39140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "Domestic furniture"@en .
+
+cpv:code-80500000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-80000000;
+  rdfs:label "Training services"@en .
+
+cpv:code-98310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Washing and dry-cleaning services"@en .
+
+cpv:code-18110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18100000;
+  rdfs:label "Occupational clothing"@en .
+
+cpv:code-50830000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50800000;
+  rdfs:label "Repair services of garments and textiles"@en .
+
+cpv:code-18130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18100000;
+  rdfs:label "Special workwear"@en .
+
+cpv:code-39510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39500000;
+  rdfs:label "Textile household articles"@en .
+
+cpv:code-50730000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50700000;
+  rdfs:label "Repair and maintenance services of cooler groups"@en .
+
+cpv:code-50530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50500000;
+  rdfs:label "Repair and maintenance services of machinery"@en .
+
+cpv:code-50710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50700000;
+  rdfs:label "Repair and maintenance services of electrical and mechanical building installations"@en .
+
+cpv:code-50320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50300000;
+  rdfs:label "Repair and maintenance services of personal computers"@en .
+
+cpv:code-15890000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15800000;
+  rdfs:label "Miscellaneous food products and dried goods"@en .
+
+cpv:code-72240000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72200000;
+  rdfs:label "Systems analysis and programming services"@en .
+
+cpv:code-80530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Vocational training services"@en .
+
+cpv:code-80510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Specialist training services"@en .
+
+cpv:code-80520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Training facilities"@en .
+
+cpv:code-79630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79600000;
+  rdfs:label "Personnel services except placement and supply services"@en .
+
+cpv:code-80570000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Personal development training services"@en .
+
+cpv:code-33160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Operating techniques"@en .
+
+cpv:code-92520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92500000;
+  rdfs:label "Museum services and preservation services of historical sites and buildings"@en .
+
+cpv:code-71200000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Architectural and related services"@en .
+
+cpv:code-71250000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71200000;
+  rdfs:label "Architectural, engineering and surveying services"@en .
+
+cpv:code-34910000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34900000;
+  rdfs:label "Horse or hand-drawn carts, other non-mechanically-propelled vehicles, baggage carts and miscellaneous spare parts"@en .
+
+cpv:code-90511100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-90511000;
+  rdfs:label "Urban solid-refuse collection services"@en .
+
+cpv:code-71700000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Monitoring and control services"@en .
+
+cpv:code-66170000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Financial consultancy, financial transaction processing and clearing-house services"@en .
+
+cpv:code-15800000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-15000000;
+  rdfs:label "Miscellaneous food products"@en .
+
+cpv:code-15100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-15000000;
+  rdfs:label "Animal products, meat and meat products"@en .
+
+cpv:code-03220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03200000;
+  rdfs:label "Vegetables, fruits and nuts"@en .
+
+cpv:code-15110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15100000;
+  rdfs:label "Meat"@en .
+
+cpv:code-24110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-24100000;
+  rdfs:label "Industrial gases"@en .
+
+cpv:code-09120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09100000;
+  rdfs:label "Gaseous fuels"@en .
+
+cpv:code-65210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-65200000;
+  rdfs:label "Gas distribution"@en .
+
+cpv:code-77340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77300000;
+  rdfs:label "Tree pruning and hedge trimming"@en .
+
+cpv:code-77320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77300000;
+  rdfs:label "Sports fields maintenance services"@en .
+
+cpv:code-63510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63500000;
+  rdfs:label "Travel agency and similar services"@en .
+
+cpv:code-79990000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79900000;
+  rdfs:label "Miscellaneous business-related services"@en .
+
+cpv:code-63520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63500000;
+  rdfs:label "Transport agency services"@en .
+
+cpv:code-45454000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45450000;
+  rdfs:label "Restructuring work"@en .
+
+cpv:code-45410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45400000;
+  rdfs:label "Plastering work"@en .
+
+cpv:code-45262660 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45262600;
+  rdfs:label "Asbestos-removal work"@en .
+
+cpv:code-45431000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45430000;
+  rdfs:label "Tiling work"@en .
+
+cpv:code-45223220 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45223200;
+  rdfs:label "Structural shell work"@en .
+
+cpv:code-45420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45400000;
+  rdfs:label "Joinery and carpentry installation work"@en .
+
+cpv:code-50610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50600000;
+  rdfs:label "Repair and maintenance services of security equipment"@en .
+
+cpv:code-50410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50400000;
+  rdfs:label "Repair and maintenance services of measuring, testing and checking apparatus"@en .
+
+cpv:code-35110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-35100000;
+  rdfs:label "Firefighting, rescue and safety equipment"@en .
+
+cpv:code-31620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31600000;
+  rdfs:label "Sound or visual signalling apparatus"@en .
+
+cpv:code-66140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Portfolio management services"@en .
+
+cpv:code-66130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Brokerage and related securities and commodities services"@en .
+
+cpv:code-55520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55500000;
+  rdfs:label "Catering services"@en .
+
+cpv:code-55320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55300000;
+  rdfs:label "Meal-serving services"@en .
+
+cpv:code-55510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55500000;
+  rdfs:label "Canteen services"@en .
+
+cpv:code-79950000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79900000;
+  rdfs:label "Exhibition, fair and congress organisation services"@en .
+
+cpv:code-79952000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79950000;
+  rdfs:label "Event services"@en .
+
+cpv:code-92620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92600000;
+  rdfs:label "Sport-related services"@en .
+
+cpv:code-92330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92300000;
+  rdfs:label "Recreational-area services"@en .
+
+cpv:code-92320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92300000;
+  rdfs:label "Arts-facility operation services"@en .
+
+cpv:code-92310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92300000;
+  rdfs:label "Artistic and literary creation and interpretation services"@en .
+
+cpv:code-71335000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71330000;
+  rdfs:label "Engineering studies"@en .
+
+cpv:code-71410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71400000;
+  rdfs:label "Urban planning services"@en .
+
+cpv:code-38340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38300000;
+  rdfs:label "Instruments for measuring quantities"@en .
+
+cpv:code-65120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-65100000;
+  rdfs:label "Operation of a water-purification plant"@en .
+
+cpv:code-90400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-90000000;
+  rdfs:label "Sewage services"@en .
+
+cpv:code-90410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90400000;
+  rdfs:label "Sewage removal services"@en .
+
+cpv:code-90420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90400000;
+  rdfs:label "Sewage treatment services"@en .
+
+cpv:code-44316500 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-44316000;
+  rdfs:label "Smiths' wares"@en .
+
+cpv:code-03410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03400000;
+  rdfs:label "Wood"@en .
+
+cpv:code-60172000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-60170000;
+  rdfs:label "Hire of buses and coaches with driver"@en .
+
+cpv:code-34120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34100000;
+  rdfs:label "Motor vehicles for the transport of 10 or more persons"@en .
+
+cpv:code-90514000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90510000;
+  rdfs:label "Refuse recycling services"@en .
+
+cpv:code-15810000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15800000;
+  rdfs:label "Bread products, fresh pastry goods and cakes"@en .
+
+cpv:code-15610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15600000;
+  rdfs:label "Grain mill products"@en .
+
+cpv:code-55240000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55200000;
+  rdfs:label "Holiday centre and holiday home services"@en .
+
+cpv:code-85310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-85300000;
+  rdfs:label "Social work services"@en .
+
+cpv:code-24450000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-24400000;
+  rdfs:label "Agro-chemical products"@en .
+
+cpv:code-50700000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-50000000;
+  rdfs:label "Repair and maintenance services of building installations"@en .
+
+cpv:code-71621000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71620000;
+  rdfs:label "Technical analysis or consultancy services"@en .
+
+cpv:code-72220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72200000;
+  rdfs:label "Systems and technical consultancy services"@en .
+
+cpv:code-34350000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34300000;
+  rdfs:label "Tyres for heavy/light-duty vehicles"@en .
+
+cpv:code-15860000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15800000;
+  rdfs:label "Coffee, tea and related products"@en .
+
+cpv:code-42960000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42900000;
+  rdfs:label "Command and control system, printing, graphics, office automation and information-processing equipment"@en .
+
+cpv:code-50800000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-50000000;
+  rdfs:label "Miscellaneous repair and maintenance services"@en .
+
+cpv:code-30200000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-30000000;
+  rdfs:label "Computer equipment and supplies"@en .
+
+cpv:code-50310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50300000;
+  rdfs:label "Maintenance and repair of office machinery"@en .
+
+cpv:code-30210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-30200000;
+  rdfs:label "Data-processing machines (hardware)"@en .
+
+cpv:code-48820000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48800000;
+  rdfs:label "Servers"@en .
+
+cpv:code-79100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-79000000;
+  rdfs:label "Legal services"@en .
+
+cpv:code-79110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79100000;
+  rdfs:label "Legal advisory and representation services"@en .
+
+cpv:code-79140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79100000;
+  rdfs:label "Legal advisory and information services"@en .
+
+cpv:code-79130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79100000;
+  rdfs:label "Legal documentation and certification services"@en .
+
+cpv:code-79220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79200000;
+  rdfs:label "Fiscal services"@en .
+
+cpv:code-45200000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-45000000;
+  rdfs:label "Works for complete or part construction and civil engineering work"@en .
+
+cpv:code-75250000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75200000;
+  rdfs:label "Fire-brigade and rescue services"@en .
+
+cpv:code-63720000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63700000;
+  rdfs:label "Support services for water transport"@en .
+
+cpv:code-92610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92600000;
+  rdfs:label "Sports facilities operation services"@en .
+
+cpv:code-33600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-33000000;
+  rdfs:label "Pharmaceutical products"@en .
+
+cpv:code-33680000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33600000;
+  rdfs:label "Pharmaceutical articles"@en .
+
+cpv:code-33650000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33600000;
+  rdfs:label "General anti-infectives for systemic use, vaccines, antineoplastic and immunodulating agents"@en .
+
+cpv:code-14210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-14200000;
+  rdfs:label "Gravel, sand, crushed stone and aggregates"@en .
+
+cpv:code-38510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38500000;
+  rdfs:label "Microscopes"@en .
+
+cpv:code-38630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38600000;
+  rdfs:label "Astronomical and optical instruments"@en .
+
+cpv:code-38430000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38400000;
+  rdfs:label "Detection and analysis apparatus"@en .
+
+cpv:code-50531100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-50531000;
+  rdfs:label "Repair and maintenance services of boilers"@en .
+
+cpv:code-71420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71400000;
+  rdfs:label "Landscape architectural services"@en .
+
+cpv:code-79713000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79710000;
+  rdfs:label "Guard services"@en .
+
+cpv:code-79710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79700000;
+  rdfs:label "Security services"@en .
+
+cpv:code-35120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-35100000;
+  rdfs:label "Surveillance and security systems and devices"@en .
+
+cpv:code-63110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63100000;
+  rdfs:label "Cargo handling services"@en .
+
+cpv:code-71300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Engineering services"@en .
+
+cpv:code-71320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71300000;
+  rdfs:label "Engineering design services"@en .
+
+cpv:code-71332000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71330000;
+  rdfs:label "Geotechnical engineering services"@en .
+
+cpv:code-90730000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90700000;
+  rdfs:label "Pollution tracking and monitoring and rehabilitation"@en .
+
+cpv:code-60440000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60400000;
+  rdfs:label "Aerial and related services"@en .
+
+cpv:code-60420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60400000;
+  rdfs:label "Non-scheduled air transport services"@en .
+
+cpv:code-34710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34700000;
+  rdfs:label "Helicopters, aeroplanes, spacecraft and other powered aircraft"@en .
+
+cpv:code-44613800 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-44613000;
+  rdfs:label "Containers for waste material"@en .
+
+cpv:code-34220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34200000;
+  rdfs:label "Trailers, semi-trailers and mobile containers"@en .
+
+cpv:code-60100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-60000000;
+  rdfs:label "Road transport services"@en .
+
+cpv:code-71313000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71310000;
+  rdfs:label "Environmental engineering consultancy services"@en .
+
+cpv:code-55321000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-55320000;
+  rdfs:label "Meal-preparation services"@en .
+
+cpv:code-55523100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-55523000;
+  rdfs:label "School-meal services"@en .
+
+cpv:code-45430000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45400000;
+  rdfs:label "Floor and wall covering work"@en .
+
+cpv:code-90900000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-90000000;
+  rdfs:label "Cleaning and sanitation services"@en .
+
+cpv:code-90650000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90600000;
+  rdfs:label "Asbestos removal services"@en .
+
+cpv:code-90720000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90700000;
+  rdfs:label "Environmental protection"@en .
+
+cpv:code-66514110 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-66514100;
+  rdfs:label "Motor vehicle insurance services"@en .
+
+cpv:code-72224000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-72220000;
+  rdfs:label "Project management consultancy services"@en .
+
+cpv:code-09330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09300000;
+  rdfs:label "Solar energy"@en .
+
+cpv:code-45421146 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45421140;
+  rdfs:label "Installation of suspended ceilings"@en .
+
+cpv:code-45262522 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45262520;
+  rdfs:label "Masonry work"@en .
+
+cpv:code-45442100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45442000;
+  rdfs:label "Painting work"@en .
+
+cpv:code-45112700 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45112000;
+  rdfs:label "Landscaping work"@en .
+
+cpv:code-45432111 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45432110;
+  rdfs:label "Laying work of flexible floor coverings"@en .
+
+cpv:code-45311200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45311000;
+  rdfs:label "Electrical fitting work"@en .
+
+cpv:code-44211100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-44211000;
+  rdfs:label "Modular and portable buildings"@en .
+
+cpv:code-39520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39500000;
+  rdfs:label "Made-up textile articles"@en .
+
+cpv:code-38540000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38500000;
+  rdfs:label "Machines and apparatus for testing and measuring"@en .
+
+cpv:code-38970000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38900000;
+  rdfs:label "Research, testing and scientific technical simulator"@en .
+
+cpv:code-55500000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-55000000;
+  rdfs:label "Canteen and catering services"@en .
+
+cpv:code-50711000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-50710000;
+  rdfs:label "Repair and maintenance services of electrical building installations"@en .
+
+cpv:code-45331000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45330000;
+  rdfs:label "Heating, ventilation and air-conditioning installation work"@en .
+
+cpv:code-42120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42100000;
+  rdfs:label "Pumps and compressors"@en .
+
+cpv:code-71317210 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71317200;
+  rdfs:label "Health and safety consultancy services"@en .
+
+cpv:code-32340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32300000;
+  rdfs:label "Microphones and loudspeakers"@en .
+
+cpv:code-32320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32300000;
+  rdfs:label "Television and audio-visual equipment"@en .
+
+cpv:code-51310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-51300000;
+  rdfs:label "Installation services of radio, television, sound and video equipment"@en .
+
+cpv:code-45340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45300000;
+  rdfs:label "Fencing, railing and safety equipment installation work"@en .
+
+cpv:code-44480000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44400000;
+  rdfs:label "Miscellaneous fire-protection equipment"@en .
+
+cpv:code-79320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79300000;
+  rdfs:label "Public-opinion polling services"@en .
+
+cpv:code-72310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72300000;
+  rdfs:label "Data-processing services"@en .
+
+cpv:code-50100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-50000000;
+  rdfs:label "Repair, maintenance and associated services of vehicles and related equipment"@en .
+
+cpv:code-34300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-34000000;
+  rdfs:label "Parts and accessories for vehicles and their engines"@en .
+
+cpv:code-72250000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72200000;
+  rdfs:label "System and support services"@en .
+
+cpv:code-72510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72500000;
+  rdfs:label "Computer-related management services"@en .
+
+cpv:code-72320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72300000;
+  rdfs:label "Database services"@en .
+
+cpv:code-50420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50400000;
+  rdfs:label "Repair and maintenance services of medical and surgical equipment"@en .
+
+cpv:code-45421000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45420000;
+  rdfs:label "Joinery work"@en .
+
+cpv:code-33630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33600000;
+  rdfs:label "Medicinal products for dermatology and the musculo-skeletal system"@en .
+
+cpv:code-85320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-85300000;
+  rdfs:label "Social services"@en .
+
+cpv:code-42510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42500000;
+  rdfs:label "Heat-exchange units, air-conditioning and refrigerating equipment, and filtering machinery"@en .
+
+cpv:code-03110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03100000;
+  rdfs:label "Crops, products of market gardening and horticulture"@en .
+
+cpv:code-03140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03100000;
+  rdfs:label "Animal products and related products"@en .
+
+cpv:code-03320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03300000;
+  rdfs:label "Cattle, livestock and small animals"@en .
+
+cpv:code-34330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34300000;
+  rdfs:label "Spare parts for goods vehicles, vans and cars"@en .
+
+cpv:code-34320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34300000;
+  rdfs:label "Mechanical spare parts except engines and engine parts"@en .
+
+cpv:code-34310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34300000;
+  rdfs:label "Engines and engine parts"@en .
+
+cpv:code-55521200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-55521000;
+  rdfs:label "Meal delivery service"@en .
+
+cpv:code-90511000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90510000;
+  rdfs:label "Refuse collection services"@en .
+
+cpv:code-31680000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31600000;
+  rdfs:label "Electrical supplies and accessories"@en .
+
+cpv:code-42160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42100000;
+  rdfs:label "Boiler installations"@en .
+
+cpv:code-44160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44100000;
+  rdfs:label "Pipeline, piping, pipes, casing, tubing and related items"@en .
+
+cpv:code-42130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42100000;
+  rdfs:label "Taps, cocks, valves and similar appliances"@en .
+
+cpv:code-79530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79500000;
+  rdfs:label "Translation services"@en .
+
+cpv:code-79540000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79500000;
+  rdfs:label "Interpretation services"@en .
+
+cpv:code-79550000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79500000;
+  rdfs:label "Typing, word-processing and desktop publishing services"@en .
+
+cpv:code-70330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-70300000;
+  rdfs:label "Property management services of real estate on a fee or contract basis"@en .
+
+cpv:code-43260000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-43200000;
+  rdfs:label "Mechanical shovels, excavators and shovel loaders, and mining machinery"@en .
+
+cpv:code-44810000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44800000;
+  rdfs:label "Paints"@en .
+
+cpv:code-50750000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50700000;
+  rdfs:label "Lift-maintenance services"@en .
+
+cpv:code-66133000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-66130000;
+  rdfs:label "Processing and clearing services"@en .
+
+cpv:code-22440000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22400000;
+  rdfs:label "Cheque forms"@en .
+
+cpv:code-37410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-37400000;
+  rdfs:label "Outdoor sports equipment"@en .
+
+cpv:code-37530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-37500000;
+  rdfs:label "Articles for funfair, table or parlour games"@en .
+
+cpv:code-98510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98500000;
+  rdfs:label "Services of commercial and industrial workers"@en .
+
+cpv:code-85140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-85100000;
+  rdfs:label "Miscellaneous health services"@en .
+
+cpv:code-71242000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71240000;
+  rdfs:label "Project and design preparation, estimation of costs"@en .
+
+cpv:code-71356200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71356000;
+  rdfs:label "Technical assistance services"@en .
+
+cpv:code-38420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38400000;
+  rdfs:label "Instruments for measuring flow, level and pressure of liquids and gases"@en .
+
+cpv:code-38290000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38200000;
+  rdfs:label "Surveying, hydrographic, oceanographic and hydrological instruments and appliances"@en .
+
+cpv:code-38120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38100000;
+  rdfs:label "Meteorological instruments"@en .
+
+cpv:code-38410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38400000;
+  rdfs:label "Metering instruments"@en .
+
+cpv:code-79000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Business services: law, marketing, consulting, recruitment, printing and security"@en .
+
+cpv:code-73220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-73200000;
+  rdfs:label "Development consultancy services"@en .
+
+cpv:code-15130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15100000;
+  rdfs:label "Meat products"@en .
+
+cpv:code-45120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45100000;
+  rdfs:label "Test drilling and boring work"@en .
+
+cpv:code-33770000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33700000;
+  rdfs:label "Paper sanitary"@en .
+
+cpv:code-85120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-85100000;
+  rdfs:label "Medical practice and related services"@en .
+
+cpv:code-45262650 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45262600;
+  rdfs:label "Cladding works"@en .
+
+cpv:code-72267000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-72260000;
+  rdfs:label "Software maintenance and repair services"@en .
+
+cpv:code-72260000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72200000;
+  rdfs:label "Software-related services"@en .
+
+cpv:code-48000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Software package and information systems"@en .
+
+cpv:code-72210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72200000;
+  rdfs:label "Programming services of packaged software products"@en .
+
+cpv:code-48210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48200000;
+  rdfs:label "Networking software package"@en .
+
+cpv:code-45421141 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45421140;
+  rdfs:label "Installation of partitioning"@en .
+
+cpv:code-79420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79400000;
+  rdfs:label "Management-related services"@en .
+
+cpv:code-48180000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48100000;
+  rdfs:label "Medical software package"@en .
+
+cpv:code-48320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48300000;
+  rdfs:label "Drawing and imaging software package"@en .
+
+cpv:code-71400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Urban planning and landscape architectural services"@en .
+
+cpv:code-71311300 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71311000;
+  rdfs:label "Infrastructure works consultancy services"@en .
+
+cpv:code-71222000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71220000;
+  rdfs:label "Architectural services for outdoor areas"@en .
+
+cpv:code-50324100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-50324000;
+  rdfs:label "System maintenance services"@en .
+
+cpv:code-18100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-18000000;
+  rdfs:label "Occupational clothing, special workwear and accessories"@en .
+
+cpv:code-18140000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18100000;
+  rdfs:label "Workwear accessories"@en .
+
+cpv:code-18830000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18800000;
+  rdfs:label "Protective footwear"@en .
+
+cpv:code-85300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-85000000;
+  rdfs:label "Social work and related services"@en .
+
+cpv:code-75240000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75200000;
+  rdfs:label "Public security, law and order services"@en .
+
+cpv:code-42710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42700000;
+  rdfs:label "Machinery for textiles"@en .
+
+cpv:code-64120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-64100000;
+  rdfs:label "Courier services"@en .
+
+cpv:code-38550000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38500000;
+  rdfs:label "Meters"@en .
+
+cpv:code-98360000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Marine services"@en .
+
+cpv:code-55330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55300000;
+  rdfs:label "Cafeteria services"@en .
+
+cpv:code-50850000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50800000;
+  rdfs:label "Repair and maintenance services of furniture"@en .
+
+cpv:code-70120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-70100000;
+  rdfs:label "Buying and selling of real estate"@en .
+
+cpv:code-70110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-70100000;
+  rdfs:label "Development services of real estate"@en .
+
+cpv:code-72410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72400000;
+  rdfs:label "Provider services"@en .
+
+cpv:code-72230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72200000;
+  rdfs:label "Custom software development services"@en .
+
+cpv:code-79330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79300000;
+  rdfs:label "Statistical services"@en .
+
+cpv:code-50740000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50700000;
+  rdfs:label "Repair and maintenance services of escalators"@en .
+
+cpv:code-90670000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90600000;
+  rdfs:label "Disinfecting and exterminating services in urban or rural areas"@en .
+
+cpv:code-77230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77200000;
+  rdfs:label "Services incidental to forestry"@en .
+
+cpv:code-66110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Banking services"@en .
+
+cpv:code-34928480 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-34928400;
+  rdfs:label "Waste and rubbish containers and bins"@en .
+
+cpv:code-45453000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45450000;
+  rdfs:label "Overhaul and refurbishment work"@en .
+
+cpv:code-98380000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Dog kennel services"@en .
+
+cpv:code-90911000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90910000;
+  rdfs:label "Accommodation, building and window cleaning services"@en .
+
+cpv:code-98370000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98300000;
+  rdfs:label "Funeral and related services"@en .
+
+cpv:code-60410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60400000;
+  rdfs:label "Scheduled air transport services"@en .
+
+cpv:code-63730000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-63700000;
+  rdfs:label "Support services for air transport"@en .
+
+cpv:code-45316110 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45316100;
+  rdfs:label "Installation of road lighting equipment"@en .
+
+cpv:code-39221000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-39220000;
+  rdfs:label "Kitchen equipment"@en .
+
+cpv:code-31000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Electrical machinery, apparatus, equipment and consumables; lighting"@en .
+
+cpv:code-92110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92100000;
+  rdfs:label "Motion picture and video tape production and related services"@en .
+
+cpv:code-90919200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-90919000;
+  rdfs:label "Office cleaning services"@en .
+
+cpv:code-50000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Repair and maintenance services"@en .
+
+cpv:code-50880000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50800000;
+  rdfs:label "Repair and maintenance services of hotel and restaurant equipment"@en .
+
+cpv:code-50430000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50400000;
+  rdfs:label "Repair and maintenance services of precision equipment"@en .
+
+cpv:code-85110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-85100000;
+  rdfs:label "Hospital and related services"@en .
+
+cpv:code-90911300 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-90911000;
+  rdfs:label "Window-cleaning services"@en .
+
+cpv:code-33100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-33000000;
+  rdfs:label "Medical equipments"@en .
+
+cpv:code-72600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-72000000;
+  rdfs:label "Computer support and consultancy services"@en .
+
+cpv:code-72420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72400000;
+  rdfs:label "Internet development services"@en .
+
+cpv:code-60650000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60600000;
+  rdfs:label "Hire of water transport equipment with crew"@en .
+
+cpv:code-31320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31300000;
+  rdfs:label "Power distribution cables"@en .
+
+cpv:code-90700000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-90000000;
+  rdfs:label "Environmental services"@en .
+
+cpv:code-44220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44200000;
+  rdfs:label "Builders' joinery"@en .
+
+cpv:code-15300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-15000000;
+  rdfs:label "Fruit, vegetables and related products"@en .
+
+cpv:code-15330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15300000;
+  rdfs:label "Processed fruit and vegetables"@en .
+
+cpv:code-45321000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45320000;
+  rdfs:label "Thermal insulation work"@en .
+
+cpv:code-45320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45300000;
+  rdfs:label "Insulation work"@en .
+
+cpv:code-09320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09300000;
+  rdfs:label "Steam, hot water and associated products"@en .
+
+cpv:code-71356100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71356000;
+  rdfs:label "Technical control services"@en .
+
+cpv:code-45259000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45250000;
+  rdfs:label "Repair and maintenance of plant"@en .
+
+cpv:code-50413200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-50413000;
+  rdfs:label "Repair and maintenance services of firefighting equipment"@en .
+
+cpv:code-65310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-65300000;
+  rdfs:label "Electricity distribution"@en .
+
+cpv:code-55110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55100000;
+  rdfs:label "Hotel accommodation services"@en .
+
+cpv:code-15550000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15500000;
+  rdfs:label "Assorted dairy products"@en .
+
+cpv:code-64110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-64100000;
+  rdfs:label "Postal services"@en .
+
+cpv:code-45233139 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233130;
+  rdfs:label "Highway maintenance work"@en .
+
+cpv:code-34100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-34000000;
+  rdfs:label "Motor vehicles"@en .
+
+cpv:code-90000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Sewage, refuse, cleaning and environmental services"@en .
+
+cpv:code-71520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71500000;
+  rdfs:label "Construction supervision services"@en .
+
+cpv:code-45350000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45300000;
+  rdfs:label "Mechanical installations"@en .
+
+cpv:code-45262670 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45262600;
+  rdfs:label "Metalworking"@en .
+
+cpv:code-42520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42500000;
+  rdfs:label "Ventilation equipment"@en .
+
+cpv:code-48920000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48900000;
+  rdfs:label "Office automation software package"@en .
+
+cpv:code-51610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-51600000;
+  rdfs:label "Installation services of computers and information-processing equipment"@en .
+
+cpv:code-44510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44500000;
+  rdfs:label "Tools"@en .
+
+cpv:code-42630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42600000;
+  rdfs:label "Metal-working machine tools"@en .
+
+cpv:code-31170000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31100000;
+  rdfs:label "Transformers"@en .
+
+cpv:code-72000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "IT services: consulting, software development, Internet and support"@en .
+
+cpv:code-48620000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48600000;
+  rdfs:label "Operating systems"@en .
+
+cpv:code-48510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48500000;
+  rdfs:label "Communication software package"@en .
+
+cpv:code-38000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Laboratory, optical and precision equipments (excl. glasses)"@en .
+
+cpv:code-51430000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-51400000;
+  rdfs:label "Installation services of laboratory equipment"@en .
+
+cpv:code-09134200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-09134000;
+  rdfs:label "Diesel fuel"@en .
+
+cpv:code-09110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-09100000;
+  rdfs:label "Solid fuels"@en .
+
+cpv:code-34600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-34000000;
+  rdfs:label "Railway and tramway locomotives and rolling stock and associated parts"@en .
+
+cpv:code-31120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31100000;
+  rdfs:label "Generators"@en .
+
+cpv:code-31150000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31100000;
+  rdfs:label "Ballasts for discharge lamps or tubes"@en .
+
+cpv:code-32420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32400000;
+  rdfs:label "Network equipment"@en .
+
+cpv:code-71322000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71320000;
+  rdfs:label "Engineering design services for the construction of civil engineering works"@en .
+
+cpv:code-30000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Office and computing machinery, equipment and supplies except furniture and software packages"@en .
+
+cpv:code-30213100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-30213000;
+  rdfs:label "Portable computers"@en .
+
+cpv:code-32250000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32200000;
+  rdfs:label "Mobile telephones"@en .
+
+cpv:code-32550000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32500000;
+  rdfs:label "Telephone equipment"@en .
+
+cpv:code-32570000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32500000;
+  rdfs:label "Communications equipment"@en .
+
+cpv:code-64210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-64200000;
+  rdfs:label "Telephone and data transmission services"@en .
+
+cpv:code-42990000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42900000;
+  rdfs:label "Miscellaneous special-purpose machinery"@en .
+
+cpv:code-39180000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-39100000;
+  rdfs:label "Laboratory furniture"@en .
+
+cpv:code-45422000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45420000;
+  rdfs:label "Carpentry installation work"@en .
+
+cpv:code-45215100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45215000;
+  rdfs:label "Construction work for buildings relating to health"@en .
+
+cpv:code-66000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Financial and insurance services"@en .
+
+cpv:code-79419000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79410000;
+  rdfs:label "Evaluation consultancy services"@en .
+
+cpv:code-71318000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71310000;
+  rdfs:label "Advisory and consultative engineering services"@en .
+
+cpv:code-79411000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79410000;
+  rdfs:label "General management consultancy services"@en .
+
+cpv:code-66120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Investment banking services and related services"@en .
+
+cpv:code-19520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-19500000;
+  rdfs:label "Plastic products"@en .
+
+cpv:code-30213000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-30210000;
+  rdfs:label "Personal computers"@en .
+
+cpv:code-71530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71500000;
+  rdfs:label "Construction consultancy services"@en .
+
+cpv:code-45315100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45315000;
+  rdfs:label "Electrical engineering installation works"@en .
+
+cpv:code-45231300 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45231000;
+  rdfs:label "Construction work for water and sewage pipelines"@en .
+
+cpv:code-45233140 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233100;
+  rdfs:label "Roadworks"@en .
+
+cpv:code-45233222 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233220;
+  rdfs:label "Paving and asphalting works"@en .
+
+cpv:code-45233120 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233100;
+  rdfs:label "Road construction works"@en .
+
+cpv:code-72200000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-72000000;
+  rdfs:label "Software programming and consultancy services"@en .
+
+cpv:code-72268000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-72260000;
+  rdfs:label "Software supply services"@en .
+
+cpv:code-72266000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-72260000;
+  rdfs:label "Software consultancy services"@en .
+
+cpv:code-33130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Dental and subspecialty instruments and devices"@en .
+
+cpv:code-79714000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79710000;
+  rdfs:label "Surveillance services"@en .
+
+cpv:code-80410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80400000;
+  rdfs:label "Various school services"@en .
+
+cpv:code-48450000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48400000;
+  rdfs:label "Time accounting or human resources software package"@en .
+
+cpv:code-72262000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-72260000;
+  rdfs:label "Software development services"@en .
+
+cpv:code-48400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-48000000;
+  rdfs:label "Business transaction and personal business software package"@en .
+
+cpv:code-48440000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48400000;
+  rdfs:label "Financial analysis and accounting software package"@en .
+
+cpv:code-71541000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71540000;
+  rdfs:label "Construction project management services"@en .
+
+cpv:code-71247000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71240000;
+  rdfs:label "Supervision of building work"@en .
+
+cpv:code-71540000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71500000;
+  rdfs:label "Construction management services"@en .
+
+cpv:code-98351000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-98350000;
+  rdfs:label "Car park management services"@en .
+
+cpv:code-48730000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48700000;
+  rdfs:label "Security software package"@en .
+
+cpv:code-34210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34200000;
+  rdfs:label "Vehicle bodies"@en .
+
+cpv:code-50340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50300000;
+  rdfs:label "Repair and maintenance services of audio-visual and optical equipment"@en .
+
+cpv:code-50330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50300000;
+  rdfs:label "Maintenance services of telecommunications equipment"@en .
+
+cpv:code-79421000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79420000;
+  rdfs:label "Project-management services other than for construction work"@en .
+
+cpv:code-44000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Construction structures and materials; auxiliary products to construction (except electric apparatus)"@en .
+
+cpv:code-55410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55400000;
+  rdfs:label "Bar management services"@en .
+
+cpv:code-98130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-98100000;
+  rdfs:label "Miscellaneous membership organisations services"@en .
+
+cpv:code-33696500 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-33696000;
+  rdfs:label "Laboratory reagents"@en .
+
+cpv:code-79400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-79000000;
+  rdfs:label "Business and management consultancy and related services"@en .
+
+cpv:code-31220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31200000;
+  rdfs:label "Electrical circuit components"@en .
+
+cpv:code-22990000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22900000;
+  rdfs:label "Newsprint, handmade paper and other uncoated paper or paperboard for graphic purposes"@en .
+
+cpv:code-80110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80100000;
+  rdfs:label "Pre-school education services"@en .
+
+cpv:code-79940000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79900000;
+  rdfs:label "Collection agency services"@en .
+
+cpv:code-22110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22100000;
+  rdfs:label "Printed books"@en .
+
+cpv:code-55524000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-55520000;
+  rdfs:label "School catering services"@en .
+
+cpv:code-85312000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-85310000;
+  rdfs:label "Social work services without accommodation"@en .
+
+cpv:code-72610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-72600000;
+  rdfs:label "Computer support services"@en .
+
+cpv:code-32330000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32300000;
+  rdfs:label "Apparatus for sound, video-recording and reproduction"@en .
+
+cpv:code-32350000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32300000;
+  rdfs:label "Parts of sound and video equipment"@en .
+
+cpv:code-33170000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33100000;
+  rdfs:label "Anaesthesia and resuscitation"@en .
+
+cpv:code-42930000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42900000;
+  rdfs:label "Centrifuges, calendering or vending machines"@en .
+
+cpv:code-33124110 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-33124100;
+  rdfs:label "Diagnostic systems"@en .
+
+cpv:code-43210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-43200000;
+  rdfs:label "Earthmoving machinery"@en .
+
+cpv:code-45520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-45500000;
+  rdfs:label "Hire of earthmoving equipment with operator"@en .
+
+cpv:code-55310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55300000;
+  rdfs:label "Restaurant waiter services"@en .
+
+cpv:code-77110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-77100000;
+  rdfs:label "Services incidental to agricultural production"@en .
+
+cpv:code-80340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80300000;
+  rdfs:label "Special education services"@en .
+
+cpv:code-18930000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18900000;
+  rdfs:label "Sacks and bags"@en .
+
+cpv:code-18420000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18400000;
+  rdfs:label "Clothing accessories"@en .
+
+cpv:code-31710000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31700000;
+  rdfs:label "Electronic equipment"@en .
+
+cpv:code-44190000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44100000;
+  rdfs:label "Miscellaneous construction materials"@en .
+
+cpv:code-71340000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71300000;
+  rdfs:label "Integrated engineering services"@en .
+
+cpv:code-70220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-70200000;
+  rdfs:label "Non-residential property renting or leasing services"@en .
+
+cpv:code-90460000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90400000;
+  rdfs:label "Cesspool or septic tank emptying services"@en .
+
+cpv:code-90640000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90600000;
+  rdfs:label "Gully cleaning and emptying services"@en .
+
+cpv:code-90490000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90400000;
+  rdfs:label "Sewer survey and sewage treatment consultancy services"@en .
+
+cpv:code-51210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-51200000;
+  rdfs:label "Installation services of measuring equipment"@en .
+
+cpv:code-90512000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90510000;
+  rdfs:label "Refuse transport services"@en .
+
+cpv:code-71314000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71310000;
+  rdfs:label "Energy and related services"@en .
+
+cpv:code-75230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75200000;
+  rdfs:label "Justice services"@en .
+
+cpv:code-44910000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44900000;
+  rdfs:label "Stone for construction"@en .
+
+cpv:code-90923000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90920000;
+  rdfs:label "Rat-disinfestation services"@en .
+
+cpv:code-60640000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60600000;
+  rdfs:label "Shipping operations"@en .
+
+cpv:code-45234100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45234000;
+  rdfs:label "Railway construction works"@en .
+
+cpv:code-66512100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-66512000;
+  rdfs:label "Accident insurance services"@en .
+
+cpv:code-85311000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-85310000;
+  rdfs:label "Social work services with accommodation"@en .
+
+cpv:code-75120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75100000;
+  rdfs:label "Administrative services of agencies"@en .
+
+cpv:code-71321000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71320000;
+  rdfs:label "Engineering design services for mechanical and electrical installations for buildings"@en .
+
+cpv:code-79570000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79500000;
+  rdfs:label "Mailing-list compilation and mailing services"@en .
+
+cpv:code-50240000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-50200000;
+  rdfs:label "Repair, maintenance and associated services related to marine and other equipment"@en .
+
+cpv:code-75110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-75100000;
+  rdfs:label "General public services"@en .
+
+cpv:code-72300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-72000000;
+  rdfs:label "Data services"@en .
+
+cpv:code-35810000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-35800000;
+  rdfs:label "Individual equipment"@en .
+
+cpv:code-44613700 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-44613000;
+  rdfs:label "Refuse skips"@en .
+
+cpv:code-45400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-45000000;
+  rdfs:label "Building completion work"@en .
+
+cpv:code-48800000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-48000000;
+  rdfs:label "Information systems and servers"@en .
+
+cpv:code-42920000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42900000;
+  rdfs:label "Machinery for cleaning bottles, packing and weighing and spraying machinery"@en .
+
+cpv:code-33660000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33600000;
+  rdfs:label "Medicinal products for the nervous system and sensory organs"@en .
+
+cpv:code-66600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-66000000;
+  rdfs:label "Treasury services"@en .
+
+cpv:code-66190000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Loan brokerage services"@en .
+
+cpv:code-22120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22100000;
+  rdfs:label "Publications"@en .
+
+cpv:code-22210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-22200000;
+  rdfs:label "Newspapers"@en .
+
+cpv:code-79980000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79900000;
+  rdfs:label "Subscription services"@en .
+
+cpv:code-66150000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-66100000;
+  rdfs:label "Financial markets administration services"@en .
+
+cpv:code-32410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32400000;
+  rdfs:label "Local area network"@en .
+
+cpv:code-60610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60600000;
+  rdfs:label "Ferry transport services"@en .
+
+cpv:code-90630000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-90600000;
+  rdfs:label "Ice-clearing services"@en .
+
+cpv:code-73000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Research and development services and related consultancy services"@en .
+
+cpv:code-92530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92500000;
+  rdfs:label "Botanical and zoological garden services and nature reserve services"@en .
+
+cpv:code-55300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-55000000;
+  rdfs:label "Restaurant and food-serving services"@en .
+
+cpv:code-71500000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Construction-related services"@en .
+
+cpv:code-16160000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-16100000;
+  rdfs:label "Miscellaneous gardening equipment"@en .
+
+cpv:code-45261420 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45261400;
+  rdfs:label "Waterproofing work"@en .
+
+cpv:code-45421150 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45421100;
+  rdfs:label "Non-metal joinery installation work"@en .
+
+cpv:code-45443000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45440000;
+  rdfs:label "Facade work"@en .
+
+cpv:code-19230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-19200000;
+  rdfs:label "Linen fabrics"@en .
+
+cpv:code-15896000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-15890000;
+  rdfs:label "Deep-frozen products"@en .
+
+cpv:code-65110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-65100000;
+  rdfs:label "Water distribution"@en .
+
+cpv:code-41110000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-41100000;
+  rdfs:label "Drinking water"@en .
+
+cpv:code-15980000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15900000;
+  rdfs:label "Non-alcoholic beverages"@en .
+
+cpv:code-34144700 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-34144000;
+  rdfs:label "Utility vehicles"@en .
+
+cpv:code-45332000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45330000;
+  rdfs:label "Plumbing and drain-laying work"@en .
+
+cpv:code-79822500 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-79822000;
+  rdfs:label "Graphic design services"@en .
+
+cpv:code-15540000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-15500000;
+  rdfs:label "Cheese products"@en .
+
+cpv:code-71900000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Laboratory services"@en .
+
+cpv:code-43320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-43300000;
+  rdfs:label "Construction equipment"@en .
+
+cpv:code-39100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-39000000;
+  rdfs:label "Furniture"@en .
+
+cpv:code-34520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-34500000;
+  rdfs:label "Boats"@en .
+
+cpv:code-72500000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-72000000;
+  rdfs:label "Computer-related services"@en .
+
+cpv:code-09123000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-09120000;
+  rdfs:label "Natural gas"@en .
+
+cpv:code-09000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Petroleum products, fuel, electricity and other sources of energy"@en .
+
+cpv:code-66516000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-66510000;
+  rdfs:label "Liability insurance services"@en .
+
+cpv:code-79930000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79900000;
+  rdfs:label "Specialty design services"@en .
+
+cpv:code-48810000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48800000;
+  rdfs:label "Information systems"@en .
+
+cpv:code-85100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-85000000;
+  rdfs:label "Health services"@en .
+
+cpv:code-48900000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-48000000;
+  rdfs:label "Miscellaneous software package and computer systems"@en .
+
+cpv:code-80400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-80000000;
+  rdfs:label "Adult and other education services"@en .
+
+cpv:code-39000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Furniture (incl. office furniture), furnishings, domestic appliances (excl. lighting) and cleaning products"@en .
+
+cpv:code-72400000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-72000000;
+  rdfs:label "Internet services"@en .
+
+cpv:code-79800000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-79000000;
+  rdfs:label "Printing and related services"@en .
+
+cpv:code-34000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Transport equipment and auxiliary products to transportation"@en .
+
+cpv:code-38650000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38600000;
+  rdfs:label "Photographic equipment"@en .
+
+cpv:code-32230000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32200000;
+  rdfs:label "Radio transmission apparatus with reception apparatus"@en .
+
+cpv:code-72222300 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-72222000;
+  rdfs:label "Information technology services"@en .
+
+cpv:code-55900000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-55000000;
+  rdfs:label "Retail trade services"@en .
+
+cpv:code-42610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42600000;
+  rdfs:label "Machine tools operated by laser and machining centres"@en .
+
+cpv:code-45331210 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45331200;
+  rdfs:label "Ventilation installation work"@en .
+
+cpv:code-80550000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Safety training services"@en .
+
+cpv:code-60000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Transport services (excl. Waste transport)"@en .
+
+cpv:code-32323500 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-32323000;
+  rdfs:label "Video-surveillance system"@en .
+
+cpv:code-45214200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45214000;
+  rdfs:label "Construction work for school buildings"@en .
+
+cpv:code-79520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79500000;
+  rdfs:label "Reprographic services"@en .
+
+cpv:code-38580000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-38500000;
+  rdfs:label "Non-medical equipment based on the use of radiations"@en .
+
+cpv:code-90919000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-90910000;
+  rdfs:label "Office, school and office equipment cleaning services"@en .
+
+cpv:code-72267100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-72267000;
+  rdfs:label "Maintenance of information technology software"@en .
+
+cpv:code-15000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Food, beverages, tobacco and related products"@en .
+
+cpv:code-15500000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-15000000;
+  rdfs:label "Dairy products"@en .
+
+cpv:code-31600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-31000000;
+  rdfs:label "Electrical equipment and apparatus"@en .
+
+cpv:code-85000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Health and social work services"@en .
+
+cpv:code-48100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-48000000;
+  rdfs:label "Industry specific software package"@en .
+
+cpv:code-71311000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-71310000;
+  rdfs:label "Civil engineering consultancy services"@en .
+
+cpv:code-45100000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-45000000;
+  rdfs:label "Site preparation work"@en .
+
+cpv:code-48610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48600000;
+  rdfs:label "Database systems"@en .
+
+cpv:code-42000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Industrial machinery"@en .
+
+cpv:code-71317100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71317000;
+  rdfs:label "Fire and explosion protection and control consultancy services"@en .
+
+cpv:code-73200000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-73000000;
+  rdfs:label "Research and development consultancy services"@en .
+
+cpv:code-18220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-18200000;
+  rdfs:label "Weatherproof clothing"@en .
+
+cpv:code-48310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48300000;
+  rdfs:label "Document creation software package"@en .
+
+cpv:code-60210000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-60200000;
+  rdfs:label "Public transport services by railways"@en .
+
+cpv:code-92510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-92500000;
+  rdfs:label "Library and archive services"@en .
+
+cpv:code-98341140 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-98341100;
+  rdfs:label "Caretaker services"@en .
+
+cpv:code-65320000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-65300000;
+  rdfs:label "Operation of electrical installations"@en .
+
+cpv:code-80590000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Tutorial services"@en .
+
+cpv:code-33696000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-33690000;
+  rdfs:label "Reagents and contrast media"@en .
+
+cpv:code-48460000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48400000;
+  rdfs:label "Analytical, scientific, mathematical or forecasting software package"@en .
+
+cpv:code-90600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-90000000;
+  rdfs:label "Cleaning and sanitation services in urban or rural areas, and related services"@en .
+
+cpv:code-65130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-65100000;
+  rdfs:label "Operation of water supplies"@en .
+
+cpv:code-70310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-70300000;
+  rdfs:label "Building rental or sale services"@en .
+
+cpv:code-44310000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-44300000;
+  rdfs:label "Wire products"@en .
+
+cpv:code-03450000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03400000;
+  rdfs:label "Tree-nursery products"@en .
+
+cpv:code-45261100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45261000;
+  rdfs:label "Roof-framing work"@en .
+
+cpv:code-45111291 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45111290;
+  rdfs:label "Site-development work"@en .
+
+cpv:code-30163100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-30163000;
+  rdfs:label "Agency fuel cards"@en .
+
+cpv:code-71351810 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71351800;
+  rdfs:label "Topographical services"@en .
+
+cpv:code-45261210 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45261200;
+  rdfs:label "Roof-covering work"@en .
+
+cpv:code-71631300 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-71631000;
+  rdfs:label "Technical building-inspection services"@en .
+
+cpv:code-45233220 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233200;
+  rdfs:label "Surface work for roads"@en .
+
+cpv:code-18000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Clothing, footwear, luggage articles and accessories"@en .
+
+cpv:code-51410000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-51400000;
+  rdfs:label "Installation services of medical equipment"@en .
+
+cpv:code-45261000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45260000;
+  rdfs:label "Erection and related works of roof frames and coverings"@en .
+
+cpv:code-45313100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45313000;
+  rdfs:label "Lift installation work"@en .
+
+cpv:code-79341000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79340000;
+  rdfs:label "Advertising services"@en .
+
+cpv:code-32520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-32500000;
+  rdfs:label "Telecommunications cable and equipment"@en .
+
+cpv:code-42910000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-42900000;
+  rdfs:label "Distilling, filtering or rectifying apparatus"@en .
+
+cpv:code-80560000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-80500000;
+  rdfs:label "Health and first-aid training services"@en .
+
+cpv:code-55512000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-55510000;
+  rdfs:label "Canteen management services"@en .
+
+cpv:code-31640000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31600000;
+  rdfs:label "Machines and apparatus with individual functions"@en .
+
+cpv:code-33790000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-33700000;
+  rdfs:label "Laboratory, hygienic or pharmaceutical glassware"@en .
+
+cpv:code-37820000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-37800000;
+  rdfs:label "Art supplies"@en .
+
+cpv:code-77314000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-77310000;
+  rdfs:label "Grounds maintenance services"@en .
+
+cpv:code-79600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-79000000;
+  rdfs:label "Recruitment services"@en .
+
+cpv:code-79510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-79500000;
+  rdfs:label "Telephone-answering services"@en .
+
+cpv:code-85312110 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-85312100;
+  rdfs:label "Child daycare services"@en .
+
+cpv:code-03120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-03100000;
+  rdfs:label "Horticultural and nursery products"@en .
+
+cpv:code-18143000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-18140000;
+  rdfs:label "Protective gear"@en .
+
+cpv:code-45317000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-45310000;
+  rdfs:label "Other electrical installation work"@en .
+
+cpv:code-31530000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31500000;
+  rdfs:label "Parts of lamps and lighting equipment"@en .
+
+cpv:code-45232140 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45232100;
+  rdfs:label "District-heating mains construction work"@en .
+
+cpv:code-48190000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48100000;
+  rdfs:label "Educational software package"@en .
+
+cpv:code-79416000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79410000;
+  rdfs:label "Public relations services"@en .
+
+cpv:code-45421100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45421000;
+  rdfs:label "Installation of doors and windows and related components"@en .
+
+cpv:code-31510000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-31500000;
+  rdfs:label "Electric filament lamps"@en .
+
+cpv:code-64220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-64200000;
+  rdfs:label "Telecommunication services except telephone and data transmission services"@en .
+
+cpv:code-45442110 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45442100;
+  rdfs:label "Painting work of buildings"@en .
+
+cpv:code-55120000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-55100000;
+  rdfs:label "Hotel meeting and conference services"@en .
+
+cpv:code-98300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-98000000;
+  rdfs:label "Miscellaneous services"@en .
+
+cpv:code-72263000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-72260000;
+  rdfs:label "Software implementation services"@en .
+
+cpv:code-32321200 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-32321000;
+  rdfs:label "Audio-visual equipment"@en .
+
+cpv:code-15894210 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-15894200;
+  rdfs:label "School meals"@en .
+
+cpv:code-37520000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-37500000;
+  rdfs:label "Toys"@en .
+
+cpv:code-39162110 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-39162100;
+  rdfs:label "Teaching supplies"@en .
+
+cpv:code-45232410 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45232400;
+  rdfs:label "Sewerage work"@en .
+
+cpv:code-45233142 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45233140;
+  rdfs:label "Road-repair works"@en .
+
+cpv:code-45454100 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45454000;
+  rdfs:label "Restoration work"@en .
+
+cpv:code-85312300 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-85312000;
+  rdfs:label "Guidance and counselling services"@en .
+
+cpv:code-71610000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-71600000;
+  rdfs:label "Composition and purity testing and analysis services"@en .
+
+cpv:code-48220000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-48200000;
+  rdfs:label "Internet and intranet software package"@en .
+
+cpv:code-34144900 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-34144000;
+  rdfs:label "Electric vehicles"@en .
+
+cpv:code-45232150 a skos:Concept, <http://purl.org/cpv/2008/ns/Subcategory>;
+  skos:broader cpv:code-45232100;
+  rdfs:label "Works related to water-distribution pipelines"@en .
+
+cpv:code-71600000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-71000000;
+  rdfs:label "Technical testing, analysis and consultancy services"@en .
+
+cpv:code-79625000 a skos:Concept, <http://purl.org/cpv/2008/ns/Category>;
+  skos:broader cpv:code-79620000;
+  rdfs:label "Supply services of medical personnel"@en .
+
+cpv:code-70130000 a skos:Concept, <http://purl.org/cpv/2008/ns/Class>;
+  skos:broader cpv:code-70100000;
+  rdfs:label "Letting services of own property"@en .
+
+cpv:code-79300000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-79000000;
+  rdfs:label "Market and economic research; polling and statistics"@en .
+
+cpv:code-48200000 a skos:Concept, <http://purl.org/cpv/2008/ns/Group>;
+  skos:broader cpv:code-48000000;
+  rdfs:label "Networking, Internet and intranet software package"@en .
+
+cpv:code-80000000 a skos:Concept, <http://purl.org/cpv/2008/ns/Division>;
+  rdfs:label "Education and training services"@en .
+
+gn:A.ADM1 a gn:Code;
+  skos:prefLabel "first-order administrative division"@en;
+  skos:notation "A.ADM1";
+  skos:definition "a primary administrative division of a country, such as a state in the United States"@en .
+
+gn:A.ADM3 a gn:Code;
+  skos:prefLabel "third-order administrative division"@en;
+  skos:notation "A.ADM3";
+  skos:definition "a subdivision of a second-order administrative division"@en .
+
+gn:A.ADM2 a gn:Code;
+  skos:prefLabel "second-order administrative division"@en;
+  skos:notation "A.ADM2";
+  skos:definition "a subdivision of a first-order administrative division"@en .
+
+gn:A.PCLI a gn:Code;
+  skos:prefLabel "independent political entity"@en;
+  skos:notation "A.PCLI" .
+
+gn:A.ADMD a gn:Code;
+  skos:prefLabel "administrative division"@en;
+  skos:notation "A.ADMD";
+  skos:definition "an administrative division of a country, undifferentiated as to administrative level"@en .
+
+gn:A.ADM4 a gn:Code;
+  skos:prefLabel "fourth-order administrative division"@en;
+  skos:notation "A.ADM4";
+  skos:definition "a subdivision of a third-order administrative division"@en .
+
+gn:A.ZN a gn:Code;
+  skos:prefLabel "zone"@en;
+  skos:notation "A.ZN" .
+
+gn:A.ADM3H a gn:Code;
+  skos:prefLabel "historical third-order administrative division"@en;
+  skos:notation "A.ADM3H" .
+
+gn:A.ADM2H a gn:Code;
+  skos:prefLabel "historical second-order administrative division"@en;
+  skos:notation "A.ADM2H" .
+
+gn:A.ADM1H a gn:Code;
+  skos:prefLabel "historical first-order administrative division"@en;
+  skos:notation "A.ADM1H" .
+
+gn:A.ADM4H a gn:Code;
+  skos:prefLabel "historical fourth-order administrative division"@en;
+  skos:notation "A.ADM4H" .
+
+gn:A.PCLH a gn:Code;
+  skos:prefLabel "historical political entity"@en;
+  skos:notation "A.PCLH" .
+
+gn:A.PRSH a gn:Code;
+  skos:prefLabel "parish"@en;
+  skos:notation "A.PRSH";
+  skos:definition "an ecclesiastical district"@en .
+
+gn:A.ZNB a gn:Code;
+  skos:prefLabel "buffer zone"@en;
+  skos:notation "A.ZNB";
+  skos:definition "a zone recognized as a buffer between two nations in which military presence is minimal or absent"@en .
+
+gn:A.LTER a gn:Code;
+  skos:prefLabel "leased area"@en;
+  skos:notation "A.LTER";
+  skos:definition "a tract of land leased to another country, usually for military installations"@en .
+
+gn:A.PCL a gn:Code;
+  skos:prefLabel "political entity"@en;
+  skos:notation "A.PCL" .
+
+gn:A.PCLD a gn:Code;
+  skos:prefLabel "dependent political entity"@en;
+  skos:notation "A.PCLD" .
+
+gn:A.PCLF a gn:Code;
+  skos:prefLabel "freely associated state"@en;
+  skos:notation "A.PCLF" .
+
+gn:A.PCLIX a gn:Code;
+  skos:prefLabel "section of independent political entity"@en;
+  skos:notation "A.PCLIX" .
+
+gn:A.PCLS a gn:Code;
+  skos:prefLabel "semi-independent political entity"@en;
+  skos:notation "A.PCLS" .
+
+gn:A.TERR a gn:Code;
+  skos:prefLabel "territory"@en;
+  skos:notation "A.TERR" .
+
+gn:A.ADMH a gn:Code;
+  skos:prefLabel "historical administrative division"@en;
+  skos:notation "A.ADMH" .
