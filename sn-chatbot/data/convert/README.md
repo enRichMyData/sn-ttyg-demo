@@ -1,3 +1,36 @@
+This uses OntetxtRefine to convert the json data in [../raw] to RDF.
+
+The process first applies the transformaitons in [project-configurations.json], 
+then uses the mapping query in [transform-query.sparql]
+
+Commant to launch the transformation process
 ```bash
 ontorefine-cli transform -u 'http://localhost:7333' -f json -q transform-query.sparql -c project-configurations.json ../raw/records_AUSTRIA_offset_0.json > test.ttl
+```
+
+Input json sample 
+
+```json
+{
+    "buyer_address_country_name": "FRANCE",
+    "award_amount_sum": 38000,
+    "buyer_name": "UNIVERSIT\u00c9 DE TOULOUSE",
+    "buyer_address_locality": "Toulouse",
+    "award_duration_in_days_first": null,
+    "release_date": "2025-04-08T02:00:00+00:00",
+    "tag_status": "closed",
+    "tender_url": "https://ted.europa.eu/udl?uri=TED:NOTICE:239680-2025:TEXT:EN:HTML&tabId=0",
+    "date_updated": "2025-04-15T11:34:08.532871",
+    "tender_id": "00239680-2025_td",
+    "cpv_codes": [
+      "15300000",
+      "03220000",
+      "15330000",
+      "03210000",
+      "15310000",
+      "03110000"
+    ],
+     "ocid": "ocds-0c46vo-0003-00239680-2025",
+    "tender_description": "Le pr\u00e9sent accord-cadre a pour objet la fourniture de fruits et l\u00e9gumes frais n\u00e9cessaires \u00e0 la confection de repas quotidiens pour les 60 enfants et 26 salari\u00e9s de la structure multi-accueil Petite Enfance UPSIMOMES de L'Universit\u00e9 de Toulouse.",
+}
 ```
